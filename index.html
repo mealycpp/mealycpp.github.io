@@ -1,0 +1,149 @@
+---
+layout: none
+title: "Welcome to RecoIoT"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ page.title }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --clr-primary: #2dd4bf;
+      --clr-accent:  #f97316;
+      --clr-bg:      #f1f5f9;
+      --clr-dark:    #0f172a;
+      --clr-light:   #ffffff;
+      --font-base:   'Montserrat', sans-serif;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: var(--font-base);
+      background: var(--clr-bg);
+      color: var(--clr-dark);
+      line-height: 1.6;
+    }
+    a { color: var(--clr-accent); text-decoration:none; }
+    header {
+      background: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+      color: var(--clr-light);
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    header p  { font-size: 1.2rem; opacity: 0.9; }
+
+    nav {
+      display: flex; justify-content: center; gap: 2rem;
+      margin-top: 1rem;
+    }
+    nav a {
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      transition: background 0.3s;
+    }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+
+    .grid { display: grid; gap: 1.5rem; }
+    .projects { grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); }
+    .card {
+      background: var(--clr-light);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card img {
+      width: 100%; border-radius: 0.5rem; margin-bottom: 1rem;
+    }
+    .card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .card p { font-size: 0.95rem; opacity: 0.8; }
+
+    .posts ul { list-style: none; }
+    .posts li {
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .posts a { font-weight: 500; }
+    .posts .date { font-size: 0.85rem; color: #64748b; margin-left: 0.5rem; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>RecoIoT Lab Blog</h1>
+    <p>Reconfiguring IoT & UAV systems through cutting-edge research and hands-on tutorials.</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/projects/">Projects</a>
+      <a href="/tutorials/">Tutorials</a>
+      <a href="/team/">Team</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Featured Projects -->
+    <section>
+      <h2>🌟 Featured Projects</h2>
+      <div class="grid projects">
+        <div class="card">
+          <img src="/assets/img/gliese-581d.jpg" alt="Gliese-581d">
+          <h3>Gliese-581d: PQC in Space</h3>
+          <p>Implementing CRYSTALS-Dilithium signatures on Turing Pi 2.5 for lunar comms.</p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/drone-swarm.jpg" alt="Drone Swarm">
+          <h3>Swarm Control via BERT NLP</h3>
+          <p>Dynamic mission planning for quadcopter swarms using natural-language commands.</p>
+        </div>
+        <div class="card">
+          <img src="/assets/img/edf-simulation.jpg" alt="EDF Simulation">
+          <h3>EDF Reliability Modeling</h3>
+          <p>Bayesian networks for brushless‐motor failure analysis in ducted-fan drones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Posts -->
+    <section class="posts" style="margin-top: 3rem;">
+      <h2>📰 Latest Posts</h2>
+      <ul>
+        {% for post in site.posts limit:5 %}
+        <li>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+          <span class="date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      <p><a href="/blog/">See all posts →</a></p>
+    </section>
+
+    <!-- About RSCL -->
+    <section style="margin-top: 3rem;">
+      <h2>🔧 About RSCL</h2>
+      <p>The Reconfigurable Space Computing Lab (RSCL) at Cal Poly Pomona is dedicated to advancing UAV autonomy, secure comms, and generative AI for prosthetics. We mentor 14 teams in NASA MINDS 2025, collaborate with JPL/NASA, and hold multiple US Navy & AFRL grants.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; {{ site.time | date: "%Y" }} RecoIoT Lab • Built with ❤️ on GitHub Pages
+  </footer>
+
+</body>
+</html>
