@@ -9,6 +9,11 @@ title: "Welcome to RecoIoT"
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{{ page.title }}</title>
+  <!-- SEO & Social -->
+  <meta name="description" content="The Reconfigurable IoT Lab at Cal Poly Pomona: research, tutorials, student spotlights.">
+  <meta property="og:title" content="RecoIoT Lab Blog">
+  <meta property="og:description" content="Cutting-edge UAV autonomy, secure comms, and IoT research from RSCL.">
+  <meta property="og:image" content="/assets/img/og-image.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -41,12 +46,13 @@ title: "Welcome to RecoIoT"
       margin-top: 1rem;
     }
     nav a {
+      color: var(--clr-light);
       font-weight: 500;
       padding: 0.5rem 1rem;
       border-radius: 9999px;
       transition: background 0.3s;
     }
-    nav a:hover { background: rgba(255,255,255,0.2); }
+    nav a:hover { background: rgba(255,255,255,0.3); }
 
     main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
 
@@ -74,6 +80,16 @@ title: "Welcome to RecoIoT"
     }
     .posts a { font-weight: 500; }
     .posts .date { font-size: 0.85rem; color: #64748b; margin-left: 0.5rem; }
+
+    .edit-link {
+      text-align: center;
+      margin: 2rem 0;
+      font-size: 0.9rem;
+    }
+    .edit-link a {
+      color: var(--clr-primary);
+      font-weight: 500;
+    }
 
     footer {
       text-align: center;
@@ -137,9 +153,16 @@ title: "Welcome to RecoIoT"
     <!-- About RSCL -->
     <section style="margin-top: 3rem;">
       <h2>🔧 About RSCL</h2>
-      <p>The Reconfigurable Space Computing Lab (RSCL) at Cal Poly Pomona is dedicated to advancing UAV autonomy, secure comms, and generative AI for prosthetics. We mentor 14 teams in NASA MINDS 2025, collaborate with JPL/NASA, and hold multiple US Navy & AFRL grants.</p>
+      <p>Since 2019, the Reconfigurable Space Computing Lab (RSCL) at Cal Poly Pomona has participated in NASA MINDS every year: 1 project in 2019, 2 in 2020, 4 in 2021, 8 in 2022, and 14 in 2025. We are dedicated to advancing UAV autonomy, secure communications, and generative AI for prosthetics, collaborating with JPL/NASA, and supported by multiple US Navy & AFRL grants.</p>
     </section>
   </main>
+
+  <!-- “Improve this page” link -->
+  <div class="edit-link">
+    <a href="https://github.com/mealycpp/mealycpp.github.io/edit/main/index.html" target="_blank">
+      ✏️ Improve this page on GitHub
+    </a>
+  </div>
 
   <footer>
     &copy; {{ site.time | date: "%Y" }} RecoIoT Lab • Built with ❤️ on GitHub Pages
