@@ -1,0 +1,932 @@
+SDMC ASCON CISC UART - DEEP ASIC METRICS
+======================================================================
+
+Clock period: 33.333 ns
+Clock frequency: 30.000 MHz
+
+POWER
+----------------------------------------------------------------------
+Final leakage power: 3.520163 uW
+Leakage source: reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json
+Dynamic/switching power: not confirmed unless internal/switching/total table appears below.
+
+LATENCY / LEAKAGE ENERGY
+----------------------------------------------------------------------
+ASCON p8 permutation lower-bound: 24 cycles, 0.800 us, leakage energy 2.816 pJ
+ASCON p12 permutation lower-bound: 36 cycles, 1.200 us, leakage energy 4.224 pJ
+
+STANDARD-CELL AREA
+----------------------------------------------------------------------
+Total standard-cell count: 58050
+Total standard-cell area: 1045266.43
+Area source: reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:44
+
+NAND2-EQUIVALENT GATES
+----------------------------------------------------------------------
+NAND2 reference cell: gf180mcu_fd_sc_mcu7t5v0__nand2_1
+NAND2 reference area: 10.976
+NAND2 source: reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/tmp/9c1cb0e1a17c4aa586fc067ee52aabed.lib
+NAND2-equivalent gates: 95232.0
+NAND2-equivalent KGE: 95.232 KGE
+
+CELL TYPE BREAKDOWN
+----------------------------------------------------------------------
+Endcap cell                          count=372      area=1633.230       src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:38
+Fill cell                            count=20471    area=127659.660     src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:39
+Tap cell                             count=6866     area=30144.490      src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:40
+Antenna cell                         count=148      area=649.780        src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:41
+Tie cell                             count=9        area=79.030         src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:42
+Standard cell                        count=30184    area=885100.250     src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:43
+Total                                count=58050    area=1045266.430    src=reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:44
+
+ALL AREA / UTIL / WIRE METRICS FOUND
+----------------------------------------------------------------------
+metrics.route__wirelength__iter:23 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:24 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:25 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:26 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:27 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:28 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__iter:29 = 2332552    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength = 2336382    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.route__wirelength__max = 2803    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design__instance__area__class:fill_cell = 127660    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design__instance__area = 1045270    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__die__area = 1061460    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__core__area = 1045270    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__stdcell = 917607    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__macros = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__padcells = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__cover = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__utilization = 0.877869    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__utilization__stdcell = 0.877869    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:tie_cell = 79.0272    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:buffer = 122.931    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:inverter = 20248.5    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:sequential_cell = 362120    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:multi_input_combinational_cell = 307034    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:endcap_cell = 1633.23    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:tap_cell = 30144.5    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__estimated = 1924080    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:timing_repair_buffer = 170189    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:clock_buffer = 24033    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:clock_inverter = 1352.24    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.global_route__wirelength = 4148298    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:antenna_cell = 649.779    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:0 = 2336471    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:1 = 2336403    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:2 = 2336371    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:3 = 2336382    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:4 = 2336426    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:5 = 2336431    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:6 = 2335224    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:7 = 2335178    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:8 = 2335259    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:9 = 2335172    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:10 = 2335697    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:11 = 2335724    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:12 = 2336027    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:13 = 2336105    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:14 = 2336058    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:15 = 2336186    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:16 = 2336180    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:17 = 2335967    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:18 = 2336144    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:19 = 2336160    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:20 = 2336160    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:21 = 2336181    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:22 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:23 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:24 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:25 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:26 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:27 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:28 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__iter:29 = 2332552    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength = 2336382    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.route__wirelength__max = 2803    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__instance__area__class:fill_cell = 127660    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+design__instance__area = 1045270    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__die__area = 1061460    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__core__area = 1045270    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__stdcell = 917607    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__macros = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__padcells = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__cover = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__utilization = 0.877869    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__utilization__stdcell = 0.877869    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:tie_cell = 79.0272    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:buffer = 122.931    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:inverter = 20248.5    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:sequential_cell = 362120    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:multi_input_combinational_cell = 307034    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:endcap_cell = 1633.23    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:tap_cell = 30144.5    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__estimated = 1924080    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:timing_repair_buffer = 170189    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:clock_buffer = 24033    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:clock_inverter = 1352.24    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+global_route__wirelength = 4148298    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:antenna_cell = 649.779    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:0 = 2336471    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:1 = 2336403    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:2 = 2336371    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:3 = 2336382    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:4 = 2336426    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:5 = 2336431    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:6 = 2335224    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:7 = 2335178    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:8 = 2335259    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:9 = 2335172    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:10 = 2335697    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:11 = 2335724    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:12 = 2336027    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:13 = 2336105    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:14 = 2336058    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:15 = 2336186    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:16 = 2336180    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:17 = 2335967    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:18 = 2336144    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:19 = 2336160    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:20 = 2336160    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:21 = 2336181    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:22 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:23 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:24 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:25 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:26 = 2332401    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:27 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:28 = 2332538    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__iter:29 = 2332552    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength = 2336382    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+route__wirelength__max = 2803    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__instance__area__class:fill_cell = 127660    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+
+ALL POWER METRICS FOUND
+----------------------------------------------------------------------
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_in.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/69-checker-holdviolations/state_out.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_in.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/70-checker-maxslewviolations/state_out.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_in.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/71-checker-maxcapviolations/state_out.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_in.json]
+metrics.power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+metrics.design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/72-misc-reportmanufacturability/state_out.json]
+power__internal__total = 0.053157590329647064    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+power__switching__total = 0.020006481558084488    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+power__leakage__total = 3.5201630907977233e-06    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+power__total = 0.0731675922870636    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__power_grid_violation__count__net:VPWR = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__power_grid_violation__count__net:VGND = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design__power_grid_violation__count = 0    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__voltage__worst__net:VPWR__corner:nom_tt_025C_3v30 = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__average__net:VPWR__corner:nom_tt_025C_3v30 = 3.29998    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__worst__net:VPWR__corner:nom_tt_025C_3v30 = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__voltage__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__average__net:VGND__corner:nom_tt_025C_3v30 = 2.29519e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__worst__net:VGND__corner:nom_tt_025C_3v30 = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__voltage__worst = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__voltage__worst__net:VPWR = 3.2999    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__worst = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__worst__net:VPWR = 0.000100781    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__voltage__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+design_powergrid__drop__worst__net:VGND = 8.19568e-05    [reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json]
+
+POWER TABLE TOTAL LINES FOUND
+----------------------------------------------------------------------
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_ff_n40C_3v60/power.rpt:16: Total                4.120958e-02 4.643806e-04 2.117992e-06 4.167608e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_ff_n40C_3v60/sta.log:183026: Total                4.120958e-02 4.643806e-04 2.117992e-06 4.167608e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_ss_125C_3v00/power.rpt:16: Total                2.888455e-02 3.259618e-04 1.001673e-05 2.922053e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_ss_125C_3v00/sta.log:191225: Total                2.888455e-02 3.259618e-04 1.001673e-05 2.922053e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_tt_025C_3v30/power.rpt:16: Total                3.401325e-02 3.890869e-04 1.796054e-06 3.440413e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/12-openroad-staprepnr/nom_tt_025C_3v30/sta.log:185059: Total                3.401325e-02 3.890869e-04 1.796054e-06 3.440413e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/31-openroad-stamidpnr/openroad-stamidpnr.log:182067: Total                6.222915e-01 5.569949e-04 1.954044e-06 6.228505e-01 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/31-openroad-stamidpnr/power.rpt:16: Total                6.222915e-01 5.569949e-04 1.954044e-06 6.228505e-01 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/36-openroad-stamidpnr-1/openroad-stamidpnr-1.log:316357: Total                4.285058e-02 1.045758e-02 2.534157e-06 5.331069e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/36-openroad-stamidpnr-1/power.rpt:16: Total                4.285058e-02 1.045758e-02 2.534157e-06 5.331069e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/38-openroad-stamidpnr-2/openroad-stamidpnr-2.log:291962: Total                4.283463e-02 1.046243e-02 2.529260e-06 5.329959e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/38-openroad-stamidpnr-2/power.rpt:16: Total                4.283463e-02 1.046243e-02 2.529260e-06 5.329959e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/43-openroad-stamidpnr-3/openroad-stamidpnr-3.log:294438: Total                4.299703e-02 1.196791e-02 2.530883e-06 5.496746e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/43-openroad-stamidpnr-3/power.rpt:16: Total                4.299703e-02 1.196791e-02 2.530883e-06 5.496746e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ff_n40C_3v60/power.rpt:16: Total                5.315759e-02 2.000648e-02 3.520163e-06 7.316759e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ff_n40C_3v60/sta.log:295427: Total                5.315759e-02 2.000648e-02 3.520163e-06 7.316759e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ss_125C_3v00/power.rpt:16: Total                3.658191e-02 1.386106e-02 2.258428e-05 5.046555e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ss_125C_3v00/sta.log:313427: Total                3.658191e-02 1.386106e-02 2.258428e-05 5.046555e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/power.rpt:16: Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/sta.log:302316: Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/power.rpt:16: Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/sta.log:293926: Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/power.rpt:16: Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/sta.log:310838: Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/power.rpt:16: Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/sta.log:299728: Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/power.rpt:16: Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/sta.log:294373: Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/power.rpt:16: Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/sta.log:312111: Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/power.rpt:16: Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%
+reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/sta.log:301050: Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%
+
+POWER REPORT SNIPPETS
+----------------------------------------------------------------------
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/sta.log:302303 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= max_tt_025C_3v30 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.379422e-02 5.333529e-05 9.372677e-07 3.384850e-02  56.1%
+Combinational        1.341911e-03 2.913323e-03 1.364732e-06 4.256600e-03   7.1%
+Clock                8.475466e-03 1.375540e-02 6.771338e-07 2.223155e-02  36.8%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%
+                            72.3%        27.7%         0.0%
+%OL_METRIC_F power__internal__total 0.043611638247966766
+%OL_METRIC_F power__switching__total 0.016722066327929497
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.06033668667078018
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/sta.log:302320 ---
+Clock                8.475466e-03 1.375540e-02 6.771338e-07 2.223155e-02  36.8%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%
+                            72.3%        27.7%         0.0%
+%OL_METRIC_F power__internal__total 0.043611638247966766
+%OL_METRIC_F power__switching__total 0.016722066327929497
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.06033668667078018
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:max_tt_025C_3v30 -0.40140622517610636
+======================= max_tt_025C_3v30 Corner ===================================
+
+Clock clk
+3.539245 source latency _35366_/CLK ^
+-3.690651 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.401406 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_ff_n40C_3v60 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           4.047018e-02 5.436170e-05 1.096600e-06 4.052563e-02  57.7%
+Combinational        1.659844e-03 2.992981e-03 1.618753e-06 4.654444e-03   6.6%
+Clock                1.050884e-02 1.454453e-02 8.051942e-07 2.505418e-02  35.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%
+                            74.9%        25.0%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/sta.log:293913 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_ff_n40C_3v60 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           4.047018e-02 5.436170e-05 1.096600e-06 4.052563e-02  57.7%
+Combinational        1.659844e-03 2.992981e-03 1.618753e-06 4.654444e-03   6.6%
+Clock                1.050884e-02 1.454453e-02 8.051942e-07 2.505418e-02  35.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%
+                            74.9%        25.0%         0.0%
+%OL_METRIC_F power__internal__total 0.052638836205005646
+%OL_METRIC_F power__switching__total 0.01759183220565319
+%OL_METRIC_F power__leakage__total 3.5201630907977233e-6
+%OL_METRIC_F power__total 0.07023418694734573
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/sta.log:293930 ---
+Clock                1.050884e-02 1.454453e-02 8.051942e-07 2.505418e-02  35.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%
+                            74.9%        25.0%         0.0%
+%OL_METRIC_F power__internal__total 0.052638836205005646
+%OL_METRIC_F power__switching__total 0.01759183220565319
+%OL_METRIC_F power__leakage__total 3.5201630907977233e-6
+%OL_METRIC_F power__total 0.07023418694734573
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:min_ff_n40C_3v60 -0.3169471164121055
+======================= min_ff_n40C_3v60 Corner ===================================
+
+Clock clk
+1.931993 source latency _35367_/CLK ^
+-1.998940 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.316947 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_ss_125C_3v00 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           2.854660e-02 3.795964e-05 3.489696e-06 2.858805e-02  58.8%
+Combinational        1.073235e-03 2.082524e-03 9.912152e-06 3.165671e-03   6.5%
+Clock                6.825551e-03 1.006382e-02 9.180624e-06 1.689856e-02  34.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%
+                            74.9%        25.0%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/sta.log:310825 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_ss_125C_3v00 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           2.854660e-02 3.795964e-05 3.489696e-06 2.858805e-02  58.8%
+Combinational        1.073235e-03 2.082524e-03 9.912152e-06 3.165671e-03   6.5%
+Clock                6.825551e-03 1.006382e-02 9.180624e-06 1.689856e-02  34.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%
+                            74.9%        25.0%         0.0%
+%OL_METRIC_F power__internal__total 0.03644537925720215
+%OL_METRIC_F power__switching__total 0.012184328399598598
+%OL_METRIC_F power__leakage__total 2.258427775814198e-5
+%OL_METRIC_F power__total 0.0486522912979126
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/sta.log:310842 ---
+Clock                6.825551e-03 1.006382e-02 9.180624e-06 1.689856e-02  34.7%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%
+                            74.9%        25.0%         0.0%
+%OL_METRIC_F power__internal__total 0.03644537925720215
+%OL_METRIC_F power__switching__total 0.012184328399598598
+%OL_METRIC_F power__leakage__total 2.258427775814198e-5
+%OL_METRIC_F power__total 0.0486522912979126
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:min_ss_125C_3v00 -0.46886362786033703
+======================= min_ss_125C_3v00 Corner ===================================
+
+Clock clk
+6.065176 source latency _35366_/CLK ^
+-6.284039 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.468864 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_tt_025C_3v30 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.365164e-02 4.561632e-05 9.372677e-07 3.369819e-02  58.1%
+Combinational        1.318317e-03 2.502421e-03 1.364732e-06 3.822102e-03   6.6%
+Clock                8.374166e-03 1.214513e-02 6.771338e-07 2.051997e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%
+                            74.7%        25.3%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/sta.log:299715 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= min_tt_025C_3v30 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.365164e-02 4.561632e-05 9.372677e-07 3.369819e-02  58.1%
+Combinational        1.318317e-03 2.502421e-03 1.364732e-06 3.822102e-03   6.6%
+Clock                8.374166e-03 1.214513e-02 6.771338e-07 2.051997e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%
+                            74.7%        25.3%         0.0%
+%OL_METRIC_F power__internal__total 0.04334419220685959
+%OL_METRIC_F power__switching__total 0.014693192206323147
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.05804036557674408
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/sta.log:299732 ---
+Clock                8.374166e-03 1.214513e-02 6.771338e-07 2.051997e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%
+                            74.7%        25.3%         0.0%
+%OL_METRIC_F power__internal__total 0.04334419220685959
+%OL_METRIC_F power__switching__total 0.014693192206323147
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.05804036557674408
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:min_tt_025C_3v30 -0.3630049419358893
+======================= min_tt_025C_3v30 Corner ===================================
+
+Clock clk
+3.187327 source latency _35366_/CLK ^
+-3.300332 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.363005 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_ff_n40C_3v60 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           4.060040e-02 5.851506e-05 1.096600e-06 4.066001e-02  56.8%
+Combinational        1.679104e-03 3.213782e-03 1.618753e-06 4.894504e-03   6.8%
+Clock                1.059294e-02 1.540909e-02 8.051942e-07 2.600284e-02  36.3%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%
+                            73.9%        26.1%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/sta.log:294360 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_ff_n40C_3v60 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           4.060040e-02 5.851506e-05 1.096600e-06 4.066001e-02  56.8%
+Combinational        1.679104e-03 3.213782e-03 1.618753e-06 4.894504e-03   6.8%
+Clock                1.059294e-02 1.540909e-02 8.051942e-07 2.600284e-02  36.3%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%
+                            73.9%        26.1%         0.0%
+%OL_METRIC_F power__internal__total 0.05287253484129906
+%OL_METRIC_F power__switching__total 0.01868140697479248
+%OL_METRIC_F power__leakage__total 3.5201630907977233e-6
+%OL_METRIC_F power__total 0.07155746221542358
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/sta.log:294377 ---
+Clock                1.059294e-02 1.540909e-02 8.051942e-07 2.600284e-02  36.3%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%
+                            73.9%        26.1%         0.0%
+%OL_METRIC_F power__internal__total 0.05287253484129906
+%OL_METRIC_F power__switching__total 0.01868140697479248
+%OL_METRIC_F power__leakage__total 3.5201630907977233e-6
+%OL_METRIC_F power__total 0.07155746221542358
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:nom_ff_n40C_3v60 -0.3271556174122499
+======================= nom_ff_n40C_3v60 Corner ===================================
+
+Clock clk
+2.029660 source latency _35367_/CLK ^
+-2.106816 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.327156 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_ss_125C_3v00 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           2.857618e-02 4.084392e-05 3.489696e-06 2.862052e-02  57.9%
+Combinational        1.079503e-03 2.235860e-03 9.912152e-06 3.325274e-03   6.7%
+Clock                6.850938e-03 1.066421e-02 9.180624e-06 1.752433e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%
+                            73.8%        26.2%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/sta.log:312098 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_ss_125C_3v00 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           2.857618e-02 4.084392e-05 3.489696e-06 2.862052e-02  57.9%
+Combinational        1.079503e-03 2.235860e-03 9.912152e-06 3.325274e-03   6.7%
+Clock                6.850938e-03 1.066421e-02 9.180624e-06 1.752433e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%
+                            73.8%        26.2%         0.0%
+%OL_METRIC_F power__internal__total 0.03650664910674095
+%OL_METRIC_F power__switching__total 0.012940935790538788
+%OL_METRIC_F power__leakage__total 2.258427775814198e-5
+%OL_METRIC_F power__total 0.049470167607069016
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/sta.log:312115 ---
+Clock                6.850938e-03 1.066421e-02 9.180624e-06 1.752433e-02  35.4%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%
+                            73.8%        26.2%         0.0%
+%OL_METRIC_F power__internal__total 0.03650664910674095
+%OL_METRIC_F power__switching__total 0.012940935790538788
+%OL_METRIC_F power__leakage__total 2.258427775814198e-5
+%OL_METRIC_F power__total 0.049470167607069016
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:nom_ss_125C_3v00 -0.5016756041473048
+======================= nom_ss_125C_3v00 Corner ===================================
+
+Clock clk
+6.355626 source latency _35366_/CLK ^
+-6.607301 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.501676 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/power.rpt:3 ---
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_tt_025C_3v30 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.371597e-02 4.910629e-05 9.372677e-07 3.376602e-02  57.2%
+Combinational        1.328810e-03 2.687964e-03 1.364732e-06 4.018139e-03   6.8%
+Clock                8.419752e-03 1.287161e-02 6.771338e-07 2.129204e-02  36.0%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%
+                            73.6%        26.4%         0.0%
+
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/sta.log:301037 ---
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+%OL_END_REPORT
+%OL_CREATE_REPORT power.rpt
+
+===========================================================================
+ report_power
+============================================================================
+======================= nom_tt_025C_3v30 Corner ===================================
+
+Group                    Internal    Switching      Leakage        Total
+                            Power        Power        Power        Power (Watts)
+------------------------------------------------------------------------
+Sequential           3.371597e-02 4.910629e-05 9.372677e-07 3.376602e-02  57.2%
+Combinational        1.328810e-03 2.687964e-03 1.364732e-06 4.018139e-03   6.8%
+Clock                8.419752e-03 1.287161e-02 6.771338e-07 2.129204e-02  36.0%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%
+                            73.6%        26.4%         0.0%
+%OL_METRIC_F power__internal__total 0.04346455633640289
+%OL_METRIC_F power__switching__total 0.015608699060976505
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.05907623469829559
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+--- reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/sta.log:301054 ---
+Clock                8.419752e-03 1.287161e-02 6.771338e-07 2.129204e-02  36.0%
+Macro                0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+Pad                  0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00   0.0%
+------------------------------------------------------------------------
+Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%
+                            73.6%        26.4%         0.0%
+%OL_METRIC_F power__internal__total 0.04346455633640289
+%OL_METRIC_F power__switching__total 0.015608699060976505
+%OL_METRIC_F power__leakage__total 2.979335931740934e-6
+%OL_METRIC_F power__total 0.05907623469829559
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.min.rpt
+
+===========================================================================
+Clock Skew (Hold)
+============================================================================
+%OL_METRIC_F clock__skew__worst_hold__corner:nom_tt_025C_3v30 -0.3803259759221485
+======================= nom_tt_025C_3v30 Corner ===================================
+
+Clock clk
+3.343121 source latency _35366_/CLK ^
+-3.473447 target latency _34120_/CLK ^
+-0.250000 clock uncertainty
+0.000000 CRPR
+--------------
+-0.380326 hold skew
+
+%OL_END_REPORT
+%OL_CREATE_REPORT skew.max.rpt

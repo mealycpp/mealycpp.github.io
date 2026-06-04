@@ -1,0 +1,22 @@
+{
+  "chip_name": "SDMC-CISC ASCON",
+  "subtitle": "A TinyTapeout GF180MCU cryptographic processor for ASCON HASH256, XOF, CXOF, XOF-chain, CXOF-chain, and AEAD.",
+  "designer": "Dr. Mohamed El-Hadedy",
+  "role": "Director of the Reconfigurable Space Computing Lab (RSCL), Cal Poly Pomona",
+  "design_name": "tt_um_mealycpp_ascon_sdmc_uart",
+  "process": "GF180MCU",
+  "frequency_mhz": 30.0,
+  "post_pnr_power_mw": 59.07623,
+  "energy_per_cycle_nj": 1.9692077,
+  "power_corner": "nom_tt_025C_3v30",
+  "power_stage": "55-openroad-stapostpnr",
+  "power_breakdown": {
+    "sequential_mw": 33.76602,
+    "combinational_mw": 4.018139,
+    "clock_mw": 21.29204,
+    "leakage_mw": 0.002979
+  },
+  "total_cell_area_um2": 0,
+  "die_area_um2": 0,
+  "area_note": "Area is constant with chain_count because XOF-chain and CXOF-chain reuse the same silicon datapath. Area-normalized plots use total_cell_area_um2 when available."
+}

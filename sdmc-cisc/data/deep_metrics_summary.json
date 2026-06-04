@@ -1,0 +1,356 @@
+{
+  "clock_period_ns": 33.333,
+  "clock_frequency_mhz": 30.00030000300003,
+  "leakage_power_w": 3.5201630907977233e-06,
+  "leakage_power_uW": 3.5201630907977233,
+  "leakage_power_source": "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/final/metrics.json",
+  "stdcell_total_count": 58050,
+  "stdcell_total_area": 1045266.43,
+  "stdcell_area_source": "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/54-openroad-rcx/nom/rcx.log:44",
+  "nand2_reference_cell": {
+    "cell": "gf180mcu_fd_sc_mcu7t5v0__nand2_1",
+    "area": 10.976,
+    "src": "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/tmp/9c1cb0e1a17c4aa586fc067ee52aabed.lib"
+  },
+  "nand2_equivalent_gates": 95231.99981778425,
+  "nand2_equivalent_kge": 95.23199981778426,
+  "latency_energy": [
+    {
+      "operation": "ASCON p8 permutation lower-bound",
+      "cycles": 24,
+      "latency_us": 0.7999919999999999,
+      "leakage_energy_pj": 2.8161023113334522
+    },
+    {
+      "operation": "ASCON p12 permutation lower-bound",
+      "cycles": 36,
+      "latency_us": 1.1999879999999998,
+      "leakage_energy_pj": 4.224153467000179
+    }
+  ],
+  "power_table_total_lines": [
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/43-openroad-stamidpnr-3/openroad-stamidpnr-3.log",
+      294438,
+      "Total                4.299703e-02 1.196791e-02 2.530883e-06 5.496746e-02 100.0%",
+      [
+        4.299703,
+        -2.0,
+        1.196791,
+        -2.0,
+        2.530883,
+        -6.0,
+        5.496746,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/43-openroad-stamidpnr-3/power.rpt",
+      16,
+      "Total                4.299703e-02 1.196791e-02 2.530883e-06 5.496746e-02 100.0%",
+      [
+        4.299703,
+        -2.0,
+        1.196791,
+        -2.0,
+        2.530883,
+        -6.0,
+        5.496746,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ff_n40C_3v60/power.rpt",
+      16,
+      "Total                5.315759e-02 2.000648e-02 3.520163e-06 7.316759e-02 100.0%",
+      [
+        5.315759,
+        -2.0,
+        2.000648,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.316759,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ff_n40C_3v60/sta.log",
+      295427,
+      "Total                5.315759e-02 2.000648e-02 3.520163e-06 7.316759e-02 100.0%",
+      [
+        5.315759,
+        -2.0,
+        2.000648,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.316759,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ss_125C_3v00/power.rpt",
+      16,
+      "Total                3.658191e-02 1.386106e-02 2.258428e-05 5.046555e-02 100.0%",
+      [
+        3.658191,
+        -2.0,
+        1.386106,
+        -2.0,
+        2.258428,
+        -5.0,
+        5.046555,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_ss_125C_3v00/sta.log",
+      313427,
+      "Total                3.658191e-02 1.386106e-02 2.258428e-05 5.046555e-02 100.0%",
+      [
+        3.658191,
+        -2.0,
+        1.386106,
+        -2.0,
+        2.258428,
+        -5.0,
+        5.046555,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/power.rpt",
+      16,
+      "Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%",
+      [
+        4.361164,
+        -2.0,
+        1.672207,
+        -2.0,
+        2.979336,
+        -6.0,
+        6.033669,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/max_tt_025C_3v30/sta.log",
+      302316,
+      "Total                4.361164e-02 1.672207e-02 2.979336e-06 6.033669e-02 100.0%",
+      [
+        4.361164,
+        -2.0,
+        1.672207,
+        -2.0,
+        2.979336,
+        -6.0,
+        6.033669,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/power.rpt",
+      16,
+      "Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%",
+      [
+        5.263884,
+        -2.0,
+        1.759183,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.023419,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ff_n40C_3v60/sta.log",
+      293926,
+      "Total                5.263884e-02 1.759183e-02 3.520163e-06 7.023419e-02 100.0%",
+      [
+        5.263884,
+        -2.0,
+        1.759183,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.023419,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/power.rpt",
+      16,
+      "Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%",
+      [
+        3.644538,
+        -2.0,
+        1.218433,
+        -2.0,
+        2.258428,
+        -5.0,
+        4.865229,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_ss_125C_3v00/sta.log",
+      310838,
+      "Total                3.644538e-02 1.218433e-02 2.258428e-05 4.865229e-02 100.0%",
+      [
+        3.644538,
+        -2.0,
+        1.218433,
+        -2.0,
+        2.258428,
+        -5.0,
+        4.865229,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/power.rpt",
+      16,
+      "Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%",
+      [
+        4.334419,
+        -2.0,
+        1.469319,
+        -2.0,
+        2.979336,
+        -6.0,
+        5.804037,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/min_tt_025C_3v30/sta.log",
+      299728,
+      "Total                4.334419e-02 1.469319e-02 2.979336e-06 5.804037e-02 100.0%",
+      [
+        4.334419,
+        -2.0,
+        1.469319,
+        -2.0,
+        2.979336,
+        -6.0,
+        5.804037,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/power.rpt",
+      16,
+      "Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%",
+      [
+        5.287253,
+        -2.0,
+        1.868141,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.155746,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ff_n40C_3v60/sta.log",
+      294373,
+      "Total                5.287253e-02 1.868141e-02 3.520163e-06 7.155746e-02 100.0%",
+      [
+        5.287253,
+        -2.0,
+        1.868141,
+        -2.0,
+        3.520163,
+        -6.0,
+        7.155746,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/power.rpt",
+      16,
+      "Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%",
+      [
+        3.650665,
+        -2.0,
+        1.294094,
+        -2.0,
+        2.258428,
+        -5.0,
+        4.947017,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_ss_125C_3v00/sta.log",
+      312111,
+      "Total                3.650665e-02 1.294094e-02 2.258428e-05 4.947017e-02 100.0%",
+      [
+        3.650665,
+        -2.0,
+        1.294094,
+        -2.0,
+        2.258428,
+        -5.0,
+        4.947017,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/power.rpt",
+      16,
+      "Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%",
+      [
+        4.346456,
+        -2.0,
+        1.56087,
+        -2.0,
+        2.979336,
+        -6.0,
+        5.907623,
+        -2.0,
+        100.0
+      ]
+    ],
+    [
+      "reports/final_gds_artifacts/input/GDS_logs/runs/wokwi/55-openroad-stapostpnr/nom_tt_025C_3v30/sta.log",
+      301050,
+      "Total                4.346456e-02 1.560870e-02 2.979336e-06 5.907623e-02 100.0%",
+      [
+        4.346456,
+        -2.0,
+        1.56087,
+        -2.0,
+        2.979336,
+        -6.0,
+        5.907623,
+        -2.0,
+        100.0
+      ]
+    ]
+  ],
+  "area_metrics_count": 4719,
+  "power_metrics_count": 1296,
+  "nand2_cells_found": 3
+}

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SDMC-CISC ASCON Chip | RSCL Cal Poly Pomona</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero">
+  <nav>
+    <div class="brand">
+      <img src="assets/rscl_logo.png" onerror="this.style.display='none'">
+      <div>
+        <b>Reconfigurable Space Computing Lab</b>
+        <span>Cal Poly Pomona</span>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#chip">Chip</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#layout">Layout</a>
+      <a href="#performance">Performance</a>
+      <a href="#chains">Chains</a>
+      <a href="#method">Method</a>
+    </div>
+  </nav>
+
+  <section class="heroGrid" id="chip">
+    <div>
+      <p class="kicker">TinyTapeout • GF180MCU • ASCON</p>
+      <h1>SDMC-CISC ASCON Cryptographic Processor</h1>
+      <p class="lead">
+        A compact CISC-style cryptographic chip supporting HASH256, XOF, CXOF,
+        XOF-chain, CXOF-chain, and AEAD encryption/decryption through a UART-accessible SDMC interface.
+      </p>
+      <p class="credit">
+        Designed by <b>Dr. Mohamed El-Hadedy</b>, Director of the
+        <b>Reconfigurable Space Computing Lab (RSCL)</b> at <b>Cal Poly Pomona</b>.
+      </p>
+      <div class="pillRow">
+        <span>HASH256</span><span>XOF</span><span>CXOF</span><span>XOF-chain</span><span>CXOF-chain</span><span>AEAD</span>
+      </div>
+    </div>
+    <div class="chipCard">
+      <img src="assets/layout.png" onerror="this.src='assets/sdmc_cisc_layout.png'">
+    </div>
+  </section>
+</header>
+
+<main>
+  <section class="panel deanPanel">
+  <p class="kicker dark">Why this matters</p>
+  <h2>From TinyTapeout chip to SDMC-CISC invention direction</h2>
+  <p>
+    This project demonstrates a compact SDMC-CISC cryptographic processor concept:
+    a command-driven architecture that reuses fixed silicon resources across multiple
+    ASCON-family security operations. The implemented chip provides a concrete
+    GF180MCU/TinyTapeout realization with physical layout, post-PnR power data,
+    and a growing performance dashboard.
+  </p>
+  <p>
+    The architecture direction is broader than one benchmark. It points toward a
+    reusable cryptographic processor style for embedded and resource-constrained
+    systems, where area remains fixed while higher-level cryptographic operations
+    are sequenced by command parameters such as mode, message size, output size,
+    customization string size, and chain count.
+  </p>
+</section>
+
+  <section class="panel archPanel" id="architecture">
+    <div class="sectionHead">
+      <div>
+        <p class="kicker dark">Architecture</p>
+        <h2>What is SDMC-CISC?</h2>
+        <p>
+          SDMC-CISC is a compact command-driven cryptographic processor architecture
+          designed to execute several ASCON-family operations through one reusable
+          silicon datapath. Instead of building separate hardware engines for HASH,
+          XOF, CXOF, chained XOF/CXOF, and AEAD, the chip uses a CISC-style control
+          layer that sequences higher-level cryptographic commands over a shared
+          ASCON permutation core.
+        </p>
+        <p>
+          The architectural idea is fixed-silicon reuse: the same physical datapath
+          supports multiple modes, while mode selection, message length, customization
+          length, output length, and chain count are handled as command parameters.
+          This is why XOF-chain and CXOF-chain increase latency and energy with
+          chain_count, but do not require additional silicon area.
+        </p>
+      </div>
+      <div class="archClaim">
+        <b>Core idea</b>
+        <span>
+          A tokenized SDMC-CISC control architecture reuses one ASCON datapath across
+          multi-mode cryptographic operations and chain-controlled XOF/CXOF execution.
+        </span>
+      </div>
+    </div>
+
+    <div class="archDiagram">
+      <div class="archNode input">
+        <b>UART / Host</b>
+        <span>Command bytes, payload bytes, mode fields</span>
+      </div>
+      <div class="archArrow">→</div>
+      <div class="archNode">
+        <b>SDMC Front End</b>
+        <span>Parses command, length, mode, chain_count</span>
+      </div>
+      <div class="archArrow">→</div>
+      <div class="archNode cisc">
+        <b>CISC Control Layer</b>
+        <span>Sequences high-level cryptographic operations</span>
+      </div>
+      <div class="archArrow">→</div>
+      <div class="archNode core">
+        <b>Shared ASCON Datapath</b>
+        <span>Reusable permutation engine and state update path</span>
+      </div>
+      <div class="archArrow">→</div>
+      <div class="archNode output">
+        <b>UART / Result</b>
+        <span>Digest, XOF output, ciphertext, plaintext, tag/status</span>
+      </div>
+    </div>
+
+    <div class="archCards">
+      <article>
+        <h3>Command-driven execution</h3>
+        <p>
+          The chip is controlled by compact command fields rather than by exposing
+          separate external interfaces for every cryptographic mode.
+        </p>
+      </article>
+      <article>
+        <h3>Unified ASCON family support</h3>
+        <p>
+          HASH256, XOF, CXOF, XOF-chain, CXOF-chain, and AEAD are organized as
+          mode-level operations over one shared hardware foundation.
+        </p>
+      </article>
+      <article>
+        <h3>Chain-capable XOF/CXOF</h3>
+        <p>
+          The chain engine repeatedly feeds the prior output into the next pass,
+          allowing chain_count to scale work without scaling silicon area.
+        </p>
+      </article>
+      <article>
+        <h3>Fixed-area cryptographic reuse</h3>
+        <p>
+          The same silicon resources are reused across modes, so performance and
+          energy scale with operation size while area remains constant.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="panel archPanel">
+    <p class="kicker dark">Architectural contribution</p>
+    <h2>Why this chip is more than a benchmark</h2>
+    <div class="contribGrid">
+      <div>
+        <b>1</b>
+        <span>SDMC-CISC command architecture for compact cryptographic execution.</span>
+      </div>
+      <div>
+        <b>2</b>
+        <span>Shared ASCON datapath reused across hashing, extendable output, customization, chain, and AEAD modes.</span>
+      </div>
+      <div>
+        <b>3</b>
+        <span>Chain-count controlled XOF/CXOF execution where latency and energy scale but silicon area remains fixed.</span>
+      </div>
+      <div>
+        <b>4</b>
+        <span>UART-accessible TinyTapeout implementation with post-layout power, timing, layout, and energy characterization.</span>
+      </div>
+    </div>
+  </section>
+  <section class="notice">
+  <b>Preliminary public preview:</b>
+  This site presents the SDMC-CISC ASCON chip architecture, layout, and post-PnR power basis.
+  Performance graphs are computed from the CSV cycle table and will be updated as measured cycle counts are finalized.
+</section>
+
+  <section class="cards" id="layout">
+    <div class="card gold"><small>Post-PnR Power</small><strong id="powerCard">—</strong><span>nom_tt_025C_3v30</span></div>
+    <div class="card"><small>Clock</small><strong id="freqCard">—</strong><span>green GDS baseline</span></div>
+    <div class="card"><small>Energy/Cycle</small><strong id="epcCard">—</strong><span>Power / frequency</span></div>
+    <div class="card"><small>Design</small><strong>SDMC-CISC</strong><span>UART cryptographic processor</span></div>
+  </section>
+
+  <section class="panel two">
+    <div>
+      <p class="kicker dark">Physical implementation</p>
+      <h2>Chip layout and post-layout summary</h2>
+      <p>
+        The chip integrates a UART-accessible SDMC front end, ASCON permutation datapath,
+        XOF/CXOF family core, XOF/CXOF chain engine, and AEAD encrypt/decrypt support.
+      </p>
+      <div class="metricList">
+        <div><b>Process</b><span id="processText">GF180MCU</span></div>
+        <div><b>Design name</b><span id="designText">tt_um_mealycpp_ascon_sdmc_uart</span></div>
+        <div><b>Power stage</b><span id="stageText">post-PnR</span></div>
+      </div>
+    </div>
+    <div class="imageBox">
+      <img src="assets/render.png" onerror="this.src='assets/layout.png'">
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="kicker dark">Power breakdown</p>
+    <h2>Where the power goes</h2>
+    <div class="bars" id="powerBars"></div>
+  </section>
+
+  <section class="panel" id="performance">
+    <div class="sectionHead">
+      <div>
+        <p class="kicker dark">Input-size dependent results</p>
+        <h2>Latency, cycles, throughput, power, and energy</h2>
+        <p>Rows currently marked “placeholder” must be replaced with real simulation cycle counts.</p>
+      </div>
+      <div class="controls">
+        <label>Power mW <input id="powerInput" type="number" step="0.0001"></label>
+        <label>Frequency MHz <input id="freqInput" type="number" step="0.001"></label>
+        <button onclick="recompute()">Recompute</button>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chartBox"><h3>Data size vs cycles</h3><svg id="cyclesChart"></svg></div>
+      <div class="chartBox"><h3>Data size vs latency</h3><svg id="latencyChart"></svg></div>
+      <div class="chartBox"><h3>Data size vs throughput</h3><svg id="throughputChart"></svg></div>
+      <div class="chartBox"><h3>Data size vs energy/op</h3><svg id="energyChart"></svg></div>
+      <div class="chartBox"><h3>Data size vs energy/byte</h3><svg id="energyByteChart"></svg></div>
+      <div class="chartBox"><h3>Data size vs power</h3><svg id="powerChart"></svg></div>
+    </div>
+  </section>
+
+  <section class="panel darkPanel" id="chains">
+    <p class="kicker">Chain modes</p>
+    <h2>XOF-chain and CXOF-chain scaling</h2>
+    <p>
+      Chain modes are shown by chain count, final-output efficiency, and per-pass cost.
+      This is essential because chain_count changes latency and energy even when the final output size is fixed.
+    </p>
+    <div class="charts">
+      <div class="chartBox"><h3>Chain count vs cycles</h3><svg id="chainCyclesChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs latency</h3><svg id="chainLatencyChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs energy</h3><svg id="chainEnergyChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs power</h3><svg id="chainPowerChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs energy/final byte</h3><svg id="chainEnergyByteChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs final-output throughput</h3><svg id="chainFinalThroughputChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs energy/area</h3><svg id="chainEnergyAreaChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs throughput/area</h3><svg id="chainThroughputAreaChart"></svg></div>
+      <div class="chartBox"><h3>Fixed silicon area vs chain count</h3><svg id="chainAreaChart"></svg></div>
+      <div class="chartBox"><h3>Chain count vs cycles/pass</h3><svg id="chainCyclesPassChart"></svg></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <p class="kicker dark">Metrics table</p>
+    <h2>Computed performance and energy table</h2>
+    <div class="tableWrap">
+      <table id="dataTable"></table>
+    </div>
+  </section>
+
+  <section class="panel" id="method">
+    <p class="kicker dark">Methodology</p>
+    <h2>Performance and energy equations</h2>
+    <div class="eqGrid">
+      <pre>time_us = cycles / frequency_MHz</pre>
+      <pre>energy_nJ = power_mW × time_us</pre>
+      <pre>throughput_MBps = processed_bytes / time_us</pre>
+      <pre>energy_nJ_per_byte = energy_nJ / processed_bytes</pre>
+      <pre>cycles_per_pass = cycles / chain_count</pre>
+      <pre>energy_nJ_per_final_byte = energy_nJ / out_bytes</pre>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <b>RSCL • Cal Poly Pomona</b>
+  <span>SDMC-CISC ASCON TinyTapeout chip landing page and performance dashboard.</span>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
