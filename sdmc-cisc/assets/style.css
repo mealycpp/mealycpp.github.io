@@ -280,3 +280,15 @@ footer{padding:34px clamp(16px,5vw,70px);display:flex;justify-content:space-betw
   box-shadow:0 18px 55px #00281730 !important;
   background:white !important;
 }
+
+/* Final designer portrait fix: use portrait frame, not circle crop */
+.designerWrap img{
+  width:220px !important;
+  height:300px !important;
+  object-fit:cover !important;
+  object-position:center top !important;
+  border-radius:24px !important;
+  border:7px solid #ffb81c !important;
+  box-shadow:0 18px 55px #00281730 !important;
+  background:white !important;
+}
