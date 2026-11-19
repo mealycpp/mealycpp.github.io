@@ -120,7 +120,7 @@ header.top img{width:54px;height:54px}
 .brief .k{font-family:var(--f-mono);font-size:12px;color:var(--gold);letter-spacing:.14em}
 .brief h2{font-family:var(--f-disp);font-size:clamp(26px,4vw,38px);margin:0;line-height:1.1;letter-spacing:.02em}
 .brief .emo{font-size:56px;letter-spacing:12px}
-.brief .story{font-size:18px;line-height:1.6;margin:0}
+.brief .story{font-size:18px;line-height:1.6;margin:0}.tutfig .stage{margin-top:4px}
 .brief small{font-size:12px;opacity:.75;font-family:var(--f-mono)}
 .big2{font-family:var(--f-disp);font-size:20px;letter-spacing:.06em}
 .steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;font-size:17px;line-height:1.5}
@@ -824,9 +824,9 @@ function fromTemplate(t, seed) {
       if (!evf(t.guard, P)) continue;
       const a = evf(t.answer, P), ds = t.dis.map(d => evf(d[0], P));
       const why = fill(t.ex, P, t.lab);
-      if (typeof a === "string") return textMCQ(r, fill(t.prompt, P, t.lab), esc(a), ds.filter(x => typeof x === "string" && x !== a).slice(0, 3).map(esc), why);
+      if (typeof a === "string") return Object.assign(textMCQ(r, fill(t.prompt, P, t.lab), esc(a), ds.filter(x => typeof x === "string" && x !== a).slice(0, 3).map(esc), why), { P, U: t.params });
       if (!isFinite(a)) continue;
-      return mcq(r, fill(t.prompt, P), a, ds, esc(t.unit === "" ? "" : t.unit), why, t.dis.map(d => esc(d[1])));
+      return Object.assign(mcq(r, fill(t.prompt, P), a, ds, esc(t.unit === "" ? "" : t.unit), why, t.dis.map(d => esc(d[1]))), { P, U: t.params });
     } catch (e) { }
   }
   return null;
@@ -837,13 +837,131 @@ function fromItem(it, seed) {
 }
 function bankQs(topics, n, seed, maxD) {
   const r = rng(seed), pool = [];
-  topics.forEach(tp => { const B = BANK[tp]; if (!B) return; B.templates.forEach(t => t.d <= maxD && pool.push(["t", t])); B.items.forEach(t => t.d <= maxD && pool.push(["i", t])); });
+  topics.forEach(tp => { const B = BANK[tp]; if (!B) return; B.templates.forEach(t => t.d <= maxD && pool.push(["t", t, tp])); B.items.forEach(t => t.d <= maxD && pool.push(["i", t, tp])); });
   shuffle(r, pool);
   pool.sort((a, b) => (b[1].d === maxD) - (a[1].d === maxD)); // newest difficulty first, then the rest
   const head = pool.slice(0, Math.max(n * 2, 6)); shuffle(r, head);
   const out = [];
-  for (const [k, t] of head) { if (out.length >= n) break; const q = k === "t" ? fromTemplate(t, ri(r, 1, 1e9)) : fromItem(t, ri(r, 1, 1e9)); if (q) out.push(q); }
+  for (const [k, t, tp] of head) { if (out.length >= n) break; const q = k === "t" ? fromTemplate(t, ri(r, 1, 1e9)) : fromItem(t, ri(r, 1, 1e9)); if (q) { if (!q.fig && !q.c) { const P = q.P, U = q.U; q.fig = () => autoFig(tp, P, U); } out.push(q); } }
   return out;
+}
+
+
+/* ---------- a picture for every bank question, drawn from the topic and the question's own numbers */
+function autoFig(topic, P, U) {
+  P = P || {}; U = U || {};
+  const has = (...ks) => ks.find(k => k in P);
+  const val = (...ks) => { const k = has(...ks); if (!k) return null; const u = (U[k] && U[k].unit) || ""; return fmtN(P[k]) + (u && u !== "flops" ? " " + esc(u) : ""); };
+  const st = el("div", { class: "stage figbox" }), svg = S("svg", { viewBox: "0 0 900 230", role: "img", "aria-label": "diagram" });
+  const T = (x, y, txt, o = {}) => { const t = S("text", { x, y, fill: o.f || "#E8EFE9", "font-size": o.s || 13, "text-anchor": o.a || "middle", "font-weight": o.w || 500, "font-family": o.m ? "JetBrains Mono" : "" }); t.innerHTML = String(txt).replace(/<tspan baseline-shift='sub' font-size='9'>([^<]*)<\/tspan>([^<]*)/g, "<tspan dy='4' font-size='10'>$1</tspan><tspan dy='-4'>$2</tspan>"); svg.appendChild(t); return t; };
+  const L = (x1, y1, x2, y2, c = "#4ADE80", w = 2.5, d) => svg.appendChild(S("line", { x1, y1, x2, y2, stroke: c, "stroke-width": w, ...(d ? { "stroke-dasharray": d } : {}) }));
+  const ff = (x, y, lab, c = "#60A5FA") => { svg.appendChild(S("rect", { x: x - 24, y: y - 34, width: 48, height: 68, rx: 6, fill: "#0F2018", stroke: c, "stroke-width": 2.5 })); svg.appendChild(S("path", { d: `M${x - 24},${y + 22} l9,-6 l-9,-6`, fill: "none", stroke: c, "stroke-width": 1.5 })); T(x, y + 4, lab, { s: 12, f: c, w: 700 }); };
+  const chip = (x, y, txt, c = "#F6D365") => { if (!txt) return; const t = T(x, y, txt, { s: 12.5, f: c, m: true }); };
+  const A = (parent, tag, at) => { if (reduced) return; parent.appendChild(S(tag, { repeatCount: "indefinite", ...at })); };
+  const dot = (d, c = "#F6D365", dur = 3, begin = 0, r = 7) => { if (reduced) return; const g = S("circle", { r, fill: c, opacity: 0, filter: "url(#figglow)" }); svg.appendChild(g);
+    A(g, "animateMotion", { path: d, dur: dur + "s", begin: begin + "s", keyPoints: "0;1;1", keyTimes: "0;0.75;1", calcMode: "linear" });
+    A(g, "animate", { attributeName: "opacity", values: "0;1;1;0", keyTimes: "0;0.05;0.75;0.8", dur: dur + "s", begin: begin + "s" }); return g; };
+  const flash = (node, attr, vals, dur = 3, begin = 0, kt) => A(node, "animate", { attributeName: attr, values: vals, dur: dur + "s", begin: begin + "s", ...(kt ? { keyTimes: kt } : {}) });
+  { const defs = S("defs"), fl = S("filter", { id: "figglow", x: "-80%", y: "-80%", width: "260%", height: "260%" }); fl.appendChild(S("feGaussianBlur", { stdDeviation: "3" })); const m = S("feMerge"); fl.appendChild(m); m.appendChild(S("feMergeNode", {})); m.appendChild(S("feMergeNode", { in: "SourceGraphic" })); defs.appendChild(fl); svg.appendChild(defs); }
+  const tcq = val("tcq", "t_cq", "tcq_max", "tcqmin", "tcq_min"), tcqMn = val("tcq_min", "tcqmin"), tcqMx = val("tcq_max");
+  const tc = val("tc", "t_logic", "logic", "tc_max", "dmax", "d", "t_old"), tcMn = val("tc_min", "tcmin", "dmin"), tcMx = val("tc_max", "dmax");
+  const tsu = val("tsu", "t_su"), th = val("th", "t_h"), sk = val("skew", "t_skew"), per = val("T", "Tclk", "T1"), f = val("f", "f_clk", "fclk");
+  const unc = val("unc", "U", "jit", "j"), Lc = val("Lc", "Ll", "late"), Cc = val("Cc", "C", "cap", "early");
+  if (topic === "radiation") {
+    ["A", "B", "C"].forEach((n, i) => { const y = 40 + i * 62; svg.appendChild(S("rect", { x: 300, y, width: 90, height: 46, rx: 8, fill: "#0F2018", stroke: "#60A5FA", "stroke-width": 2.5 })); T(345, y + 29, "copy " + n, { s: 15, w: 700 }); svg.appendChild(S("path", { d: `M390,${y + 23} H520 V${110 + (i - 1) * 16} H560`, fill: "none", stroke: "#4ADE80", "stroke-width": 2 })); L(220, y + 23, 300, y + 23); });
+    const pl = S("line", { x1: 236, y1: 10, x2: 330, y2: 60, stroke: "#F6D365", "stroke-width": 3, "stroke-linecap": "round", "stroke-dasharray": "120", "stroke-dashoffset": reduced ? 0 : 120 }); svg.appendChild(pl); T(228, 14, "☄ particle", { a: "end", s: 12, f: "#F6D365" });
+    flash(pl, "stroke-dashoffset", "120;0;0;120", 3, 0, "0;0.15;0.6;1");
+    const hitA = svg.querySelector("rect"); flash(hitA, "stroke", "#60A5FA;#60A5FA;#F43F5E;#F43F5E;#60A5FA", 3, 0, "0;0.14;0.16;0.7;1"); flash(hitA, "fill", "#0F2018;#0F2018;#3b0f1a;#3b0f1a;#0F2018", 3, 0, "0;0.14;0.16;0.7;1");
+    [0, 1, 2].forEach(i => dot(`M220,${63 + i * 62} H300`, "#F6D365", 3, 0, 5)); [0, 1, 2].forEach(i => dot(`M390,${63 + i * 62} H520 V${110 + (i - 1) * 16} H560`, i ? "#F6D365" : "#F43F5E", 3, 0.6, 5)); dot("M660,110 H780", "#34D399", 3, 1.3, 6);
+    svg.appendChild(S("path", { d: "M560,70 h60 a40,40 0 0 1 0,80 h-60 z", fill: "#132A1F", stroke: "#F6D365", "stroke-width": 2.5 })); T(600, 116, "VOTER", { s: 15, f: "#F6D365", w: 700 });
+    L(660, 110, 780, 110); T(800, 115, "out", { a: "start" });
+    chip(600, 178, val("t_voter", "tv") ? "t<tspan baseline-shift='sub' font-size='9'>voter</tspan> = " + val("t_voter", "tv") : "");
+    chip(110, 115, val("lam", "rate", "R", "r") ? "upset rate = " + val("lam", "rate", "R", "r") : "", "#8FA897");
+  } else if (topic === "cdc") {
+    svg.appendChild(S("rect", { x: 14, y: 30, width: 200, height: 150, rx: 12, fill: "#1a1530", stroke: "#A78BFA", "stroke-dasharray": "5 4" })); T(114, 56, "SOURCE CLOCK DOMAIN", { s: 12, f: "#A78BFA", w: 700 });
+    chip(114, 110, val("f_data", "f_src", "fd", "f1") ? "f = " + val("f_data", "f_src", "fd", "f1") : "data from another clock", "#E8EFE9");
+    L(214, 110, 316, 110, "#F6D365"); ff(340, 110, "FF1", "#F43F5E"); L(364, 110, 466, 110); ff(490, 110, "FF2"); L(514, 110, 640, 110);
+    svg.appendChild(S("rect", { x: 640, y: 80, width: 120, height: 60, rx: 10, fill: "#132A1F", stroke: "#4ADE80", "stroke-width": 2 })); T(700, 115, "safe logic", { s: 13 });
+    T(340, 165, "can go metastable", { s: 11, f: "#F43F5E" }); T(415, 100, "resolve", { s: 11, f: "#5EEAD4" });
+    const wob = S("path", { d: "M326,110 q4,-12 7,0 t7,0 t7,0 t7,0", fill: "none", stroke: "#F43F5E", "stroke-width": 2.2, opacity: reduced ? 1 : 0 }); svg.appendChild(wob);
+    flash(wob, "opacity", "0;0;1;1;0;0", 3.6, 0, "0;0.22;0.25;0.45;0.5;1"); flash(wob, "d", "M326,110 q4,-12 7,0 t7,0 t7,0 t7,0;M326,110 q4,12 7,0 t7,0 t7,0 t7,0;M326,110 q4,-12 7,0 t7,0 t7,0 t7,0", 0.25);
+    dot("M214,110 H316", "#F6D365", 3.6, 0); dot("M364,110 H466", "#5EEAD4", 3.6, 1.6); dot("M514,110 H640", "#34D399", 3.6, 2.3);
+    chip(490, 205, [val("f_clk", "fclk", "f_dst", "f2", "f") ? "f<tspan baseline-shift='sub' font-size='9'>clk</tspan> = " + val("f_clk", "fclk", "f_dst", "f2", "f") : "", val("tau") ? "τ = " + val("tau") : "", tsu ? "t<tspan baseline-shift='sub' font-size='9'>su</tspan> = " + tsu : ""].filter(Boolean).join("  ·  "));
+  } else if (topic === "pipelining") {
+    const ks = ["d1", "d2", "d3", "d4", "d5"].filter(k => k in P).length ? ["d1", "d2", "d3", "d4", "d5"].filter(k => k in P) : ["A", "B", "C", "D"].filter(k => k in P);
+    const blocks = P.__blocks ? P.__blocks.map(v => v + " ns") : ks.length ? ks.map(k => fmtN(P[k]) + " ns") : ["logic", "logic", "logic", "logic"];
+    const n = blocks.length, w = Math.min(130, 560 / n), gap = (620 - n * w) / (n + 1);
+    ff(80, 110, "IN"); let x = 104 + gap;
+    blocks.forEach((b, i) => { L(x - gap, 110, x, 110); svg.appendChild(S("rect", { x, y: 82, width: w, height: 56, rx: 8, fill: "#132A1F", stroke: "#4ADE80", "stroke-width": 2 })); T(x + w / 2, 115, b, { s: 13, f: "#5EEAD4", m: true }); x += w; if (i < n - 1) { svg.appendChild(S("rect", { x: x + gap / 2 - 7, y: 84, width: 14, height: 52, rx: 3, fill: "#2a2108", stroke: "#F6D365", "stroke-width": 1.5, "stroke-dasharray": "3 3" })); } x += gap; });
+    L(x - gap, 110, 796, 110); ff(820, 110, "OUT");
+    [0, 0.9, 1.8].forEach(b => dot("M104,110 H796", "#F6D365", 2.7, b, 6));
+    T(450, 30, "dashed gold = places a pipeline register can go", { s: 11, f: "#8FA897" });
+    chip(450, 200, [tcq ? "t<tspan baseline-shift='sub' font-size='9'>cq</tspan> = " + tcq : "", tsu ? "t<tspan baseline-shift='sub' font-size='9'>su</tspan> = " + tsu : "", per ? "T = " + per : ""].filter(Boolean).join("  ·  "));
+  } else if (topic === "clocking" && has("M", "fin", "O", "D")) {
+    const box = (x, lab, sub) => { svg.appendChild(S("rect", { x: x - 55, y: 80, width: 110, height: 60, rx: 10, fill: "#132A1F", stroke: "#60A5FA", "stroke-width": 2 })); T(x, 106, lab, { s: 14, w: 700, f: "#93C5FD" }); T(x, 126, sub, { s: 12, m: true, f: "#F6D365" }); };
+    T(60, 115, val("fin") ? "f<tspan baseline-shift='sub' font-size='9'>in</tspan><tspan dy='-4'> </tspan>" : "f in", { s: 13 }); chip(60, 140, val("fin") || "");
+    L(110, 110, 175, 110, "#60A5FA"); box(230, "÷ D", val("D") ? "D = " + val("D") : "D"); L(285, 110, 335, 110, "#60A5FA");
+    box(390, "PFD", "10–450 MHz"); L(445, 110, 495, 110, "#60A5FA"); box(550, "VCO × M", val("M") ? "M = " + val("M") : "M"); L(605, 110, 655, 110, "#60A5FA");
+    box(710, "÷ O", val("O") ? "O = " + val("O") : "O"); L(765, 110, 860, 110, "#60A5FA"); T(870, 115, "f<tspan baseline-shift='sub' font-size='9'>out</tspan>", { a: "start" });
+    T(450, 200, "f<tspan baseline-shift='sub' font-size='9'>out</tspan> = f<tspan baseline-shift='sub' font-size='9'>in</tspan> · M / (D · O)", { s: 14, m: true, f: "#E8EFE9" });
+    [0, 0.7, 1.4, 2.1].forEach(b => dot("M110,110 H860", "#60A5FA", 2.8, b, 5));
+  } else {
+    // the classic register-to-register path
+    ff(170, 100, "FF1"); ff(730, 100, "FF2");
+    L(194, 100, 330, 100); L(570, 100, 706, 100);
+    svg.appendChild(S("path", { d: "M330,100 q0,-44 60,-42 q30,-26 70,-6 q50,-18 80,16 q46,10 30,44 q14,40 -40,40 q-30,22 -80,6 q-50,18 -90,-14 q-40,-4 -30,-44 z", fill: "#132A1F", stroke: "#4ADE80", "stroke-width": 2 }));
+    T(450, 96, "logic", { s: 14, w: 700 });
+    chip(450, 120, tcMn && tcMx ? `t<tspan baseline-shift='sub' font-size='9'>c</tspan> = ${tcMn} / ${tcMx}` : tc ? `t<tspan baseline-shift='sub' font-size='9'>c</tspan> = ${tc}` : "", "#5EEAD4");
+    chip(170, 158, tcqMn && tcqMx ? `t<tspan baseline-shift='sub' font-size='9'>cq</tspan> = ${tcqMn} / ${tcqMx}` : tcq ? `t<tspan baseline-shift='sub' font-size='9'>cq</tspan> = ${tcq}` : "", "#93C5FD");
+    chip(730, 158, [tsu ? `t<tspan baseline-shift='sub' font-size='9'>su</tspan> = ${tsu}` : "", th ? `t<tspan baseline-shift='sub' font-size='9'>h</tspan> = ${th}` : ""].filter(Boolean).join("  "), "#C4B5FD");
+    // clock tree
+    L(60, 205, 640, 205, "#60A5FA", 2); L(146, 205, 146, 122, "#60A5FA", 2); L(706, 205, 706, 122, "#60A5FA", 2); L(640, 205, 706, 205, "#60A5FA", 2);
+    if (sk) svg.appendChild(S("path", { d: "M600,193 l24,12 l-24,12 z", fill: "#0F2018", stroke: "#60A5FA", "stroke-width": 2 }));
+    T(54, 210, "CLK", { a: "end", s: 12, f: "#60A5FA", w: 700 });
+    chip(560, 190, sk ? "skew = " + sk : "", "#FB923C");
+    chip(300, 196, [per ? "T = " + per : f ? "f = " + f : "", unc ? "uncertainty/jitter = " + unc : ""].filter(Boolean).join("  ·  "), "#E8EFE9");
+    if (Lc) chip(146, 226, "launch clk " + Lc, "#60A5FA"); if (Cc) chip(706, 226, "capture clk " + Cc, "#60A5FA");
+    dot("M60,205 H146 V122", "#60A5FA", 3.4, 0, 6); dot("M60,205 H706 V122", "#60A5FA", 3.4, 2.1, 6);
+    dot("M194,100 H330 C380,60 520,60 570,100 H706", "#F6D365", 3.4, 0.4, 7);
+    const ffs = [...svg.querySelectorAll("rect")]; flash(ffs[0], "stroke-width", "2.5;6;2.5;2.5", 3.4, 0.3, "0;0.06;0.14;1"); flash(ffs[1], "stroke-width", "2.5;2.5;6;2.5", 3.4, 0, "0;0.68;0.74;1");
+  }
+  st.appendChild(svg); return st;
+}
+
+const NSU = new Proxy({}, { get: () => ({ unit: "ns" }) });
+function withCircuit(P, inner) { return () => { const d = el("div", { class: "wrap" }); d.style.gap = "10px"; d.style.width = "100%"; d.appendChild(autoFig("timing_report", P, NSU)); d.appendChild(inner()); return d; }; }
+function setFig(w, Tc, su, th) {
+  return () => {
+    const st = el("div", { class: "stage figbox" }), svg = S("svg", { viewBox: "0 0 900 200" });
+    const X = t => 80 + 760 * t / (2 * Tc), hi = 50, lo = 90;
+    let d = `M${X(0)},${lo}`; for (let k = 0; k < 2; k++) d += ` H${X(k * Tc)} V${hi} H${X(k * Tc + Tc / 2)} V${lo}`; d += ` H${X(2 * Tc)}`;
+    [0, Tc].forEach(e => svg.appendChild(S("rect", { x: X(e - su), y: 40, width: X(e + th) - X(e - su), height: 130, fill: "#A78BFA", opacity: .25, stroke: "#A78BFA" })));
+    svg.appendChild(S("path", { d, fill: "none", stroke: "#60A5FA", "stroke-width": 2.5 }));
+    const lab = (x, y, t, c, a = "start") => { const e = S("text", { x, y, fill: c, "font-size": 12, "text-anchor": a }); e.textContent = t; svg.appendChild(e); };
+    lab(72, 75, "CLK", "#60A5FA", "end"); lab(72, 150, "D", "#E8EFE9", "end"); lab(X(Tc), 190, "setup + hold window around each edge", "#A78BFA", "middle");
+    svg.appendChild(S("line", { x1: X(0), x2: X(2 * Tc), y1: 150, y2: 150, stroke: "#4ADE80", "stroke-width": 2 }));
+    const g = S("rect", { x: X(0.2 * Tc), y: 128, width: Math.max(4, X(w) - X(0)), height: 22, fill: "#F43F5E" }); svg.appendChild(g);
+    if (!reduced) g.appendChild(S("animate", { attributeName: "x", values: `${X(0)};${X(2 * Tc - w)}`, dur: "5s", repeatCount: "indefinite" }));
+    lab(X(1.6 * Tc), 122, `glitch ${w} ns`, "#F43F5E", "middle");
+    st.appendChild(svg); return st;
+  };
+}
+function bitsFig(a, b, label) {
+  return () => {
+    const st = el("div", { class: "stage figbox" }), svg = S("svg", { viewBox: "0 0 900 190" }), A = a.toString(2).padStart(4, "0"), B = b.toString(2).padStart(4, "0");
+    const txt = (x, y, t, c, s = 14, an = "middle") => { const e = S("text", { x, y, fill: c, "font-size": s, "text-anchor": an, "font-family": "JetBrains Mono", "font-weight": 700 }); e.textContent = t; svg.appendChild(e); return e; };
+    txt(180, 40, label || "4 wires crossing into the other clock domain", "#8FA897", 12, "start");
+    for (let i = 0; i < 4; i++) {
+      const x = 260 + i * 110, ch = A[i] !== B[i];
+      svg.appendChild(S("rect", { x: x - 34, y: 60, width: 68, height: 90, rx: 10, fill: ch ? "#2a2108" : "#0F2018", stroke: ch ? "#F6D365" : "#24402F", "stroke-width": 2.5 }));
+      const t = txt(x, 118, A[i], ch ? "#F6D365" : "#E8EFE9", 40);
+      if (ch && !reduced) t.appendChild(S("animate", { attributeName: "opacity", values: "1;0.15;1", dur: "1.2s", begin: (i * 0.15) + "s", repeatCount: "indefinite" }));
+      if (ch && !reduced) { const t2 = S("set", { attributeName: "textContent" }); }
+      txt(x, 172, "bit " + (3 - i), "#5B7565", 11);
+    }
+    txt(720, 100, `${A} → ${B}`, "#E8EFE9", 18, "start"); txt(720, 128, "gold = changes", "#F6D365", 12, "start");
+    st.appendChild(svg); return st;
+  };
 }
 
 /* ---------- generic quiz screen: one question at a time, explanation after every answer */
@@ -1006,7 +1124,7 @@ function reportQs(seed, lvl) {
     const q1 = mcq(r, "What is the WNS (worst negative slack)?", wns, [Math.max(...sl), tns, r2(-wns)], "ns", "WNS is the single worst (most negative) slack of all endpoints.", ["You took the best slack, not the worst.", "That is TNS: the SUM of the negative slacks.", "The sign is part of the answer: negative means failing."]);
     const q2 = mcq(r, "What is the TNS (total negative slack)?", tns, [r2(sl.reduce((a, b) => a + b, 0)), wns, r2(tns * -1)], "ns", "TNS adds up only the NEGATIVE slacks. Passing endpoints count as 0.", ["You added the passing (positive) slacks too.", "That is WNS, the worst one only.", "TNS is negative (or 0), never positive."]);
     const q3 = mcq(r, "How many endpoints are failing?", nf, [nf + 1, N - nf, N, nf - 1], "", "Failing = negative slack. Count the red rows. Zero or positive slack passes.", ["Count again: only rows with NEGATIVE slack fail.", "You counted the passing endpoints.", "Not every endpoint fails: zero or positive slack passes.", "Count again: every negative row fails."]);
-    [q1, q2, q3].forEach(q => q.fig = fig);
+    const fig2 = withCircuit({}, fig); [q1, q2, q3].forEach(q => q.fig = fig2);
     return [q1, q2, q3, ...bankQs(["timing_report"], 2, seed, 3)];
   }
   const hold = lvl >= 6, T = pick(r, [10, 8, 5, 4, 6.4]), Lc = d100(50, 250), Cc = r2(Lc + (hold ? d100(0, 120) : d100(-30, 60))), tcq = d100(25, 60), lv = hold ? ri(r, 0, 2) : ri(r, 2, 9);
@@ -1028,12 +1146,13 @@ function reportQs(seed, lvl) {
   const qr = hold ? mcq(r, "Fill the blank: what is the hold REQUIRED time?", req, [r2(Cc + th), r2(Cc + th - U), r2(th + U)], "ns", "Hold required = destination clock delay + t<sub>h</sub> + uncertainty. Uncertainty makes hold HARDER, so it is added.", ["You forgot the clock uncertainty.", "For hold, uncertainty is ADDED to the requirement, not subtracted.", "You forgot the destination clock delay."])
     : mcq(r, "Fill the blank: what is the setup REQUIRED time?", req, [r2(T + Cc - su), r2(T + Cc + U - su), r2(T - U - su)], "ns", "Required = T + destination clock delay − uncertainty − t<sub>su</sub>. Uncertainty eats into your period.", ["You forgot the clock uncertainty.", "Uncertainty is SUBTRACTED for setup: it makes the check harder.", "You forgot the destination clock delay: the capture clock is late too, which gives you time."]);
   const qs_ = mcq(r, hold ? "Now the hold SLACK?" : "Now the SLACK?", slack, [r2(-slack), r2(slack - U), r2(hold ? arr - Cc - th : (T - su) - (tcq + logic + net))], "ns", hold ? "Hold slack = arrival − required. Negative means the new data arrives too early." : "Setup slack = required − arrival. Negative means the data arrives too late.", ["Sign flipped: for " + (hold ? "hold, it is arrival − required." : "setup, it is required − arrival."), "You applied the clock uncertainty twice.", hold ? "You left out the clock uncertainty." : "You left out both clock delays and the clock uncertainty."]);
-  qa.fig = fig; qa.after = () => show.arr = true; qr.fig = fig; qr.after = () => show.req = true; qs_.fig = fig; qs_.after = () => show.slack = true;
+  const figC = withCircuit(hold ? { Lc, Cc, tcq, tc: r2(logic + net), th, unc: U } : { Lc, Cc, tcq, tc: r2(logic + net), tsu: su, T, unc: U }, fig);
+  qa.fig = figC; qa.after = () => show.arr = true; qr.fig = figC; qr.after = () => show.req = true; qs_.fig = figC; qs_.after = () => show.slack = true;
   const out = [qa, qr, qs_];
   if (!hold && slack < 0) {
     const lp = logic / (logic + net);
-    if (lp > 0.6) out.push(Object.assign(textMCQ(r, `Slack is negative and logic is ${Math.round(lp * 100)}% of the data path (${lv} levels). Best first fix?`, "Cut the logic: add a pipeline register or retime", ["Add hold buffers", "Lower the setup time in the report", "Move the cells closer: routing is the problem"], "Most of the delay is logic, so moving cells will not save enough. Fewer logic levels per cycle (pipeline or retime) is the fix."), { fig }));
-    else if (lp < 0.4) out.push(Object.assign(textMCQ(r, `Slack is negative but routing is ${Math.round((1 - lp) * 100)}% of the data path. Best first fix?`, "Fix placement / reduce fanout so the wires get shorter", ["Add a pipeline register in the logic", "Add hold buffers", "Use a faster clock"], "When net delay dominates, the cells are far apart or one net drives too many loads. Placement constraints, fanout reduction or register duplication shorten the wires."), { fig }));
+    if (lp > 0.6) out.push(Object.assign(textMCQ(r, `Slack is negative and logic is ${Math.round(lp * 100)}% of the data path (${lv} levels). Best first fix?`, "Cut the logic: add a pipeline register or retime", ["Add hold buffers", "Lower the setup time in the report", "Move the cells closer: routing is the problem"], "Most of the delay is logic, so moving cells will not save enough. Fewer logic levels per cycle (pipeline or retime) is the fix."), { fig: figC }));
+    else if (lp < 0.4) out.push(Object.assign(textMCQ(r, `Slack is negative but routing is ${Math.round((1 - lp) * 100)}% of the data path. Best first fix?`, "Fix placement / reduce fanout so the wires get shorter", ["Add a pipeline register in the logic", "Add hold buffers", "Use a faster clock"], "When net delay dominates, the cells are far apart or one net drives too many loads. Placement constraints, fanout reduction or register duplication shorten the wires."), { fig: figC }));
   }
   while (out.length < 4) out.push(...bankQs(["timing_report"], 1, seed + out.length, Math.min(3, 1 + Math.floor(lvl / 3))));
   return out;
@@ -1059,6 +1178,7 @@ function cornerQs(seed, lvl) {
   const setupQ = r() < 0.5, cq = setupQ ? "Which corner is the WORST case for SETUP?" : "Which corner is the WORST case for HOLD?";
   const concept = textMCQ(r, cq, setupQ ? "The SLOW corner: slow silicon, low voltage (usually hot)" : "The FAST corner: fast silicon, high voltage (usually cold)", [setupQ ? "The FAST corner" : "The SLOW corner", "Only the typical corner", "Neither: corners only change power"], setupQ ? "Setup fails when data is too slow, so the tool checks the slowest silicon. (In very small processes cold can be slower: tools check both temperatures.)" : "Hold fails when data is too fast, so the tool checks the fastest silicon.");
   [q1, q2, q3].forEach(q => { q.c = c; q.chips = chips; });
+  concept.c = c; concept.chips = chips;
   const qs = lvl < 3 ? [concept, q1, q2] : [q1, q2, q3];
   qs.push(...bankQs(["corners_jitter"], 2, seed, Math.min(3, 1 + Math.floor(lvl / 3))));
   return qs;
@@ -1153,6 +1273,7 @@ function grayQs(seed, lvl) {
   const ch = pc(a ^ (a + 1)), Wg = [[1, "That is Gray code. In binary, a carry flips every bit from the lowest 0 upward at once."], [4, "Only the bits that differ change: XOR the two values and count the ones."], [2, ""], [3, ""]].filter(w => w[0] !== ch);
   const q2 = mcq(r, `A binary counter goes from ${a} to ${a + 1} (${b4(a)} → ${b4(a + 1)}). How many bits change at once?`, ch, Wg.map(w => w[0]), "", `${b4(a)} ⊕ ${b4(a + 1)} has ${ch} ones, so ${ch} wires change together. Caught mid-change in another clock domain, the receiver can see a value that is neither the old nor the new count.`, Wg.map(w => w[1]));
   const q3 = textMCQ(r, "Why do async FIFO pointers cross clock domains in Gray code?", "Only one bit changes per step, so a late-sampled pointer is either the old or the new value", ["Gray code is shorter than binary", "Gray code needs no synchronizer flops", "Gray code counts twice as fast"], "With one bit changing, a sample caught mid-change is off by at most one step, never garbage. It still goes through a 2-flop synchronizer.");
+  q1.fig = bitsFig(b, g, "binary in, Gray out: gold bits differ between the two codes"); q2.fig = bitsFig(a, a + 1); q3.fig = () => autoFig("cdc", {}, {});
   return [q1, q2, q3, ...bankQs(["cdc"], 2, seed, Math.min(3, 1 + Math.floor(lvl / 3)))];
 }
 
@@ -1184,11 +1305,11 @@ function radQs(seed, lvl) {
   const tcq = ri(r, 2, 6) / 2, tc = ri(r, 6, 24) / 2, tv = ri(r, 2, 6) / 2, tsu = ri(r, 1, 4) / 2, T1 = r2(tcq + tc + tv + tsu), T0 = r2(tcq + tc + tsu);
   out.push(Object.assign(mcq(r, `The register is tripled and a voter (${tv} ns) is added before the next register. What is the new minimum clock period?`, T1, [T0, r2(tcq + tc + 3 * tv + tsu), r2(tcq + tc + tv)], "ns",
     `T<sub>min</sub> = t<sub>cq</sub> + t<sub>c</sub> + t<sub>voter</sub> + t<sub>su</sub> = ${tcq} + ${tc} + ${tv} + ${tsu} = <b>${T1} ns</b>. F<sub>max</sub> drops from ${r2(1000 / T0)} to ${r2(1000 / T1)} MHz. Safety costs speed.`,
-    ["You forgot the voter: it sits right on the path.", "The three copies run in parallel: the data goes through ONE voter, not three.", "You forgot t<sub>su</sub> of the next register."]), { chips: `<span>t<sub>cq</sub> = ${tcq} ns</span><span>logic = ${tc} ns</span><span>voter = ${tv} ns</span><span>t<sub>su</sub> = ${tsu} ns</span>` }));
+    ["You forgot the voter: it sits right on the path.", "The three copies run in parallel: the data goes through ONE voter, not three.", "You forgot t<sub>su</sub> of the next register."]), { fig: () => autoFig("radiation", { t_voter: tv }, NSU), chips: `<span>t<sub>cq</sub> = ${tcq} ns</span><span>logic = ${tc} ns</span><span>voter = ${tv} ns</span><span>t<sub>su</sub> = ${tsu} ns</span>` }));
   if (lvl >= 2) {
     const w = ri(r, 2, 8) / 10, su = ri(r, 1, 3) / 10, th = ri(r, 1, 2) / 10, Tc = pick(r, [10, 8, 5, 4, 2.5]), p = r2(100 * (w + su + th) / Tc);
-    out.push(mcq(r, `A radiation glitch (SET) ${w} ns wide hits the logic at a random time. With T = ${Tc} ns, t<sub>su</sub> = ${su} ns and t<sub>h</sub> = ${th} ns, what is the chance the flip-flop latches it? (Worst case: assume any overlap with the setup-hold window is latched.)`, p, [r2(100 * w / Tc), r2(100 * (w + su) / Tc), r2(200 * (w + su + th) / Tc)], "%",
-      `The glitch is only latched if it overlaps the window around the edge: P = (w + t<sub>su</sub> + t<sub>h</sub>) / T = (${w} + ${su} + ${th}) / ${Tc} = <b>${p}%</b>. A faster clock (smaller T) catches MORE glitches. (Worst-case model. If the glitch must cover the whole window to be latched, P = (w − t<sub>su</sub> − t<sub>h</sub>) / T.)`, ["You forgot the setup/hold window around the edge.", "You forgot the hold part of the window.", "Only the rising edge captures: one window per period, not two."]));
+    out.push(Object.assign(mcq(r, `A radiation glitch (SET) ${w} ns wide hits the logic at a random time. With T = ${Tc} ns, t<sub>su</sub> = ${su} ns and t<sub>h</sub> = ${th} ns, what is the chance the flip-flop latches it? (Worst case: assume any overlap with the setup-hold window is latched.)`, p, [r2(100 * w / Tc), r2(100 * (w + su) / Tc), r2(200 * (w + su + th) / Tc)], "%",
+      `The glitch is only latched if it overlaps the window around the edge: P = (w + t<sub>su</sub> + t<sub>h</sub>) / T = (${w} + ${su} + ${th}) / ${Tc} = <b>${p}%</b>. A faster clock (smaller T) catches MORE glitches. (Worst-case model. If the glitch must cover the whole window to be latched, P = (w − t<sub>su</sub> − t<sub>h</sub>) / T.)`, ["You forgot the setup/hold window around the edge.", "You forgot the hold part of the window.", "Only the rising edge captures: one window per period, not two."]), { fig: setFig(w, Tc, su, th) }));
   }
   if (lvl >= 4) {
     const h2 = shuffle(r, [0, 1, 2]).slice(0, 2);
@@ -1234,6 +1355,11 @@ const TUT = {
     check: { q: "Copies hold 1, 0, 1. Voter output?", opts: ["1", "0", "X (unknown)", "It stops the clock"], right: 0, why: "Majority of {1, 0, 1} is 1." } }
 };
 TUT.trail = null;
+const TUTFIG = {
+  path: () => autoFig("x", { tc_min: 2, tc_max: 9 }, NSU), clock: () => autoFig("x", { tcq: 7, tc: 14, tsu: 4, skew: 4, T: 21 }, NSU), hold: () => autoFig("x", { tcq: 2, tc: 2, th: 2, skew: 4 }, NSU),
+  pipe: () => autoFig("pipelining", { __blocks: [4, 6, 3, 5], tcq: 1, tsu: 1, T: 12 }, NSU), report: () => autoFig("timing_report", { Lc: 1.2, Cc: 1.35, tcq: 0.45, tc: 4.9, tsu: 0.06, T: 10, unc: 0.1 }, NSU),
+  corner: () => autoFig("corners_jitter", { tcq: 3, tc: 7, tsu: 1, T: 12, jit: 0.4 }, NSU), cdc: () => autoFig("cdc", { f_clk: 100, tau: 30 }, { f_clk: { unit: "MHz" }, tau: { unit: "ps" } }), rad: () => autoFig("radiation", { t_voter: 1 }, NSU)
+};
 function tutorial(key, worldName, go, force) {
   const T_ = TUT[key];
   if (!T_) return go();
@@ -1249,7 +1375,7 @@ function tutorial(key, worldName, go, force) {
   KEYS = e => { if (e.key === "t" || e.key === "T") { e.preventDefault(); tb.onclick(); } else if (e.key === "Enter") { e.preventDefault(); jump(); } };
   function cards() {
     const pages = [
-      `<div class="k">1 · THE STORY</div><div class="emo">${T_.story.join(" ")}</div><p class="story">${T_.storyText}</p>`,
+      `<div class="k">1 · THE STORY</div><div class="emo">${T_.story.join(" ")}</div><p class="story">${T_.storyText}</p><div class="tutfig"></div>`,
       `<div class="k">2 · REMEMBER IT</div><h2>“${T_.rhyme}”</h2><div class="eq" style="white-space:normal">${T_.eq}</div>`,
       `<div class="k">3 · THE RECIPE</div><ol class="steps">${T_.steps.map((s, i) => `<li data-i="${i}">${s}</li>`).join("")}</ol>`,
       "check"
@@ -1272,6 +1398,7 @@ function tutorial(key, worldName, go, force) {
         return;
       }
       box.innerHTML = pages[p];
+      const tf = box.querySelector(".tutfig"); if (tf) tf.appendChild(TUTFIG[key] ? TUTFIG[key]() : autoFig("setup_hold_skew", {}, {}));
       if (p === 2 && !reduced) box.querySelectorAll(".steps li").forEach((li, i) => { li.style.opacity = 0; setTimeout(() => { li.style.transition = "opacity .4s"; li.style.opacity = 1; sfx.tick(); }, 350 + 650 * i); });
       const nav = el("div", { class: "row" }); const bk = el("button", { class: "ghost" }, "◀ Back"), nx = el("button", { class: "fire" }, "NEXT ▶"), sk = el("button", { class: "ghost" }, "Skip to challenge");
       bk.disabled = p === 0; bk.onclick = () => { p--; show(); }; nx.onclick = () => { sfx.click(); p++; show(); }; sk.onclick = jump;
@@ -1441,7 +1568,7 @@ function frrQ(seed) {
   if (kind === 1) return one(reportQs(seed, ri(r, 0, 9)).slice(0, 3).filter(q => !q.q.startsWith("Now")).slice(-1));
   if (kind === 2) return cornerQs(seed, 5)[ri(r, 0, 1)];
   if (kind === 3) return radQs(seed, 5)[ri(r, 1, 2)];
-  if (kind === 4) { const P = pipeGen(seed, ri(r, 2, 9)), Wp = [[P.d.length - 1, "That puts a register in every gap: it works but wastes latency."], [P.best - 1, "Too few: some stage is still longer than the budget T − t_cq − t_su."], [P.best + 1, "One more than needed: cut only when the next block would overflow the budget."], [P.best + 2, ""]].filter(w => w[0] !== P.best); return mcq(r, `Blocks ${P.d.join(", ")} ns in this order (blocks cannot be split), t<sub>cq</sub> = ${P.tcq}, t<sub>su</sub> = ${P.tsu}, T = ${P.T} ns, zero skew. Fewest pipeline registers?`, P.best, Wp.map(w => w[0]), "", `Budget per stage = ${P.T} − ${P.tcq} − ${P.tsu} = ${P.B} ns. Walk left to right and cut just before the budget overflows: ${P.best} register${P.best > 1 ? "s" : ""}.`, Wp.map(w => w[1])); }
+  if (kind === 4) { const P = pipeGen(seed, ri(r, 2, 9)), Wp = [[P.d.length - 1, "That puts a register in every gap: it works but wastes latency."], [P.best - 1, "Too few: some stage is still longer than the budget T − t_cq − t_su."], [P.best + 1, "One more than needed: cut only when the next block would overflow the budget."], [P.best + 2, ""]].filter(w => w[0] !== P.best); return Object.assign(mcq(r, `Blocks ${P.d.join(", ")} ns in this order (blocks cannot be split), t<sub>cq</sub> = ${P.tcq}, t<sub>su</sub> = ${P.tsu}, T = ${P.T} ns, zero skew. Fewest pipeline registers?`, P.best, Wp.map(w => w[0]), "", `Budget per stage = ${P.T} − ${P.tcq} − ${P.tsu} = ${P.B} ns. Walk left to right and cut just before the budget overflows: ${P.best} register${P.best > 1 ? "s" : ""}.`, Wp.map(w => w[1])), { fig: () => autoFig("pipelining", { __blocks: P.d, tcq: P.tcq, tsu: P.tsu, T: P.T }, NSU) }); }
   const tps = ["setup_hold_skew", "fmax_paths", "clocking", "pipelining", "timing_report", "corners_jitter", "interview", "cdc", "radiation"];
   return bankQs([one(tps)], 1, seed, 3)[0] || examQ(seed);
 }
