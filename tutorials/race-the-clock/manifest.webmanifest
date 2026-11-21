@@ -1,0 +1,17 @@
+{
+  "name": "Race the Clock",
+  "short_name": "Race the Clock",
+  "description": "The timing game from the Reconfigurable Space Computing Lab: setup, hold, skew, pipelines, timing reports, clock domains and radiation.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#000000",
+  "theme_color": "#08130D",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "categories": ["education", "games"]
+}
