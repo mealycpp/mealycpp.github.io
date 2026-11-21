@@ -246,6 +246,11 @@ footer{position:relative;z-index:1;text-shadow:0 1px 4px #000}
 .holo:hover>*,.holo.flat>*,.holo:has(.r3d:not([hidden]))>*{transform:none}
 .holo:has(.r3d:not([hidden]))::after{display:none}
 @media (prefers-reduced-motion:reduce){.holo>*{transform:none}}
+
+.holo3d{perspective:1500px;perspective-origin:50% 0}
+.holo3d>svg{transform:rotateX(15deg);transform-origin:50% 75%;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.holo3d:hover>svg,.holo3d:focus-within>svg{transform:rotateX(4deg)}
+@media (prefers-reduced-motion:reduce){.holo3d>svg{transform:none}}
 </style>
 
 <style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -735,8 +740,8 @@ let uid = 0;
 function stageFor(c, opts) {
   const st = el("div", { class: "stage" }); opts = { ...opts, uid: "u" + (uid++) };
   const refs = drawCircuit(c, opts); st.appendChild(refs.svg);
-  if (!opts.pickable) {
-    const r3 = race3D(c, st); refs.r3d = r3;
+  {
+    const r3 = race3D(c, st, opts.pickable ? { onPick: opts.onPick, isSel: id => refs.gates[id] && refs.gates[id].body.getAttribute("stroke") === "#F6D365" } : null); refs.r3d = r3;
     const tg = el("button", { class: "v3d", "aria-pressed": "false" }, "🛰 3D view");
     const setV = v => { r3.set(v); refs.svg.style.display = v ? "none" : ""; tg.textContent = v ? "▦ 2D view" : "🛰 3D view"; tg.setAttribute("aria-pressed", v); store.set("view3d", v); };
     tg.onclick = () => { sfx.click(); setV(!r3.box.hidden ? false : true); };
@@ -1160,8 +1165,8 @@ function levelPipe(P, key, title, onNext) {
   mis.innerHTML = `<div class="m"><div class="k">${title}</div><h2>Make it run at T = ${P.T} ns</h2><p>The whole chain does not fit in one clock. Tap the gaps between blocks to drop in pipeline registers. Every stage (register to register) must fit: t<sub>cq</sub> + stage logic + t<sub>su</sub> ≤ T. Each register adds a cycle of latency, so use as few as you can. Fewest registers = 3 stars. Blocks cannot be split, every register has the same t<sub>cq</sub> and t<sub>su</sub>, and the clock has zero skew.</p>
     <div class="params"><span>T = ${P.T} ns</span><span>t<sub>cq</sub> = ${P.tcq} ns</span><span>t<sub>su</sub> = ${P.tsu} ns</span><span>logic budget per stage = ${P.T} − ${P.tcq} − ${P.tsu} = ${P.B} ns</span></div></div>`;
   screen.appendChild(mis);
-  const st = el("div", { class: "stage" }); screen.appendChild(st);
-  const tl = el("div", { class: "stage" }); screen.appendChild(tl);
+  const st = el("div", { class: "stage holo3d" }); screen.appendChild(st);
+  const tl = el("div", { class: "stage holo3d" }); screen.appendChild(tl);
   const ctl = el("section", { class: "controls" }); const info = el("div", { class: "grow hint" });
   const fire = el("button", { class: "fire" }, "CLOCK IT"); ctl.append(info, fire); screen.appendChild(ctl);
   const res = el("section", { class: "result" }); screen.appendChild(res);
@@ -1326,7 +1331,7 @@ function levelMTBF(P, key, title, onNext) {
   mis.innerHTML = `<div class="m"><div class="k">${title}</div><h2>Bring a button-press safely into the ${P.fc} MHz domain</h2><p>The signal comes from another clock, so sooner or later it changes right inside FF1's setup window and FF1 goes <b>metastable</b>. Every extra flip-flop gives it one more clock period to settle. Add flops until the mean time between failures is at least 100 times the mission (a 1% chance of failure). Every extra flop is one more cycle of delay, so the fewest flops that pass = 3 stars.</p>
   <div class="params"><span>f<sub>clk</sub> = ${P.fc} MHz</span><span>f<sub>data</sub> = ${P.fd} MHz</span><span>τ = ${P.tau} ps</span><span>T<sub>0</sub> = ${fmtN(P.T0)} s</span><span>t<sub>cq</sub> = ${P.tcq} ns</span><span>t<sub>su</sub> = ${P.tsu} ns</span><span>mission: ${P.years} years${P.chips > 1 ? ` × ${P.chips.toLocaleString()} boards` : ""}</span><span>failure budget 1%: MTBF ≥ 100 × mission</span></div></div>`;
   screen.appendChild(mis);
-  const st = el("div", { class: "stage" }); screen.appendChild(st);
+  const st = el("div", { class: "stage holo3d" }); screen.appendChild(st);
   const ctl = el("section", { class: "controls" });
   const stp = el("div", { class: "stepper" }); stp.innerHTML = `<span class="hint">Synchronizer flops</span><button aria-label="fewer">−</button><b>1</b><button aria-label="more">+</button>`;
   const info = el("div", { class: "grow hint" }); const fire = el("button", { class: "fire" }, "LAUNCH MISSION");
@@ -2039,7 +2044,7 @@ function levelRelay(R, key, title, onNext) {
   const ps = [`t<sub>cq</sub> = ${R.tcq.min} / ${R.tcq.max} ns`, `t<sub>su</sub> = ${R.tsu} ns`, `t<sub>h</sub> = ${R.th} ns`, `clock buffer = ${R.bd} ns`];
   mis.innerHTML = `<div class="m"><div class="k">${title}</div><h2>Relay Race: ${n + 1} flip-flops, ${n} legs</h2><p>One clock drives every flip-flop. At each tick, every register launches its data down the next leg. The whole relay can only run as fast as its slowest leg. Clock buffers delay the edge at a flip-flop: for setup, that helps the leg arriving there and hurts the leg leaving it. For hold it is the other way round.</p><div class="params">${ps.map(p => `<span>${p}</span>`).join("")}</div></div>`;
   screen.appendChild(mis);
-  const st = el("div", { class: "stage" }); screen.appendChild(st);
+  const st = el("div", { class: "stage holo3d" }); screen.appendChild(st);
   const ask = el("section", { class: "result show" }); screen.appendChild(ask);
   const ctl = el("section", { class: "controls" }); const res = el("section", { class: "result" });
   let refs;
@@ -2098,13 +2103,13 @@ function levelRelay(R, key, title, onNext) {
 }
 
 /* ============================================================ 3D race view: the same circuit as a glowing board you can orbit */
-function race3D(c, holder) {
+function race3D(c, holder, pick) {
   const box = el("div", { class: "r3d", hidden: "" });
-  box.innerHTML = `<canvas aria-label="3D view of the circuit"></canvas><div class="ghint">drag to orbit · scroll to zoom</div>`;
+  box.innerHTML = `<canvas aria-label="3D view of the circuit"></canvas><div class="ghint">${pick ? "tap a gate to select it · drag to orbit · scroll to zoom" : "drag to orbit · scroll to zoom"}</div>`;
   holder.appendChild(box);
   const cv = box.querySelector("canvas"), ctx = cv.getContext("2d");
   let W = 0, H = 0, dpr = Math.min(2, devicePixelRatio || 1), yaw = 0.0, pitch = 0.86, dist = 960, drag = null, raf = 0, on = false;
-  const st = { t: -1, tm: null, mode: null, edge: 1e9, span: 1, T: 0 };
+  const st = { t: -1, tm: null, mode: null, edge: 1e9, span: 1, T: 0 }; let hitG = [];
   // geometry in board units (SVG x,y -> world x,z), height up = -y on screen
   const P3 = (x, y, h) => [x - 450, -h, 210 - y];
   let lane = 0; const wires = [];
@@ -2159,7 +2164,7 @@ function race3D(c, holder) {
     if (!on) { raf = requestAnimationFrame(frame); return; }
     if (!W) fit();
     ctx.fillStyle = "#030a07"; ctx.fillRect(0, 0, W, H);
-    const items = [], t = st.t, tm = st.tm, mode = st.mode;
+    const items = [], t = st.t, tm = st.tm, mode = st.mode; hitG = [];
     // board
     const corners = [[0, 0], [900, 0], [900, 420], [0, 420]].map(q => proj(...P3(q[0], q[1], -2)));
     polyF(corners, "#071a10", "#1f4a33", 2);
@@ -2201,9 +2206,11 @@ function race3D(c, holder) {
     for (const g of c.gates) {
       const s0 = tm ? tm.st[g.id] : undefined, d = tm ? dly(g, mode) : 0, p = s0 === undefined ? 0 : d ? clamp((t - s0) / d, 0, 1) : (t >= s0 ? 1 : 0);
       const slot = g.type === "SLOT";
-      const G3 = GEO[g.id];
+      const G3 = GEO[g.id], selG = pick && pick.isSel(g.id);
+      if (pick && g.type !== "SLOT") { const pc = proj(...P3(g.x, g.y, 14)); hitG.push({ id: g.id, x: pc[0], y: pc[1], r: 40 * pc[3] }); }
       if (p > 0) extrude(shrink(G3.body, .86), 1, 1 + 24 * p, "#FFD866", 1, null, items);
-      extrude(G3.body, 0, 26, slot ? "#3a2f10" : "#0F2018", p > 0 ? .22 : .92, slot ? "#E2B33C" : "#4ADE80", items);
+      extrude(G3.body, 0, 26, selG ? "#3b3210" : slot ? "#3a2f10" : "#0F2018", p > 0 ? .22 : .92, selG ? "#F6D365" : slot ? "#E2B33C" : "#4ADE80", items);
+      if (selG) { const pc = proj(...P3(g.x, g.y, 0)); items.push({ z: pc[2] + 50, draw: () => { const gr = ctx.createRadialGradient(pc[0], pc[1], 0, pc[0], pc[1], 70 * pc[3]); gr.addColorStop(0, "rgba(246,211,101,.45)"); gr.addColorStop(1, "transparent"); ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(pc[0], pc[1], 70 * pc[3], 0, 6.283); ctx.fill(); } }); }
       if (G3.xtra) extrude(G3.xtra, 0, 26, "#4ADE80", .9, "#4ADE80", items, false);
       if (G3.bub) extrude(G3.bub, 0, 26, "#0F2018", 1, "#4ADE80", items);
       label(g.x - 4, g.y - 8, 28, slot ? "slot" : g.type, "#E8EFE9", 13, items);
@@ -2213,9 +2220,11 @@ function race3D(c, holder) {
     items.sort((a, b) => b.z - a.z).forEach(i => i.draw());
     raf = requestAnimationFrame(frame);
   };
-  cv.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, yaw, pitch }; cv.setPointerCapture(e.pointerId); });
-  cv.addEventListener("pointermove", e => { if (!drag) return; yaw = drag.yaw + (e.clientX - drag.x) * 0.006; pitch = clamp(drag.pitch + (e.clientY - drag.y) * 0.004, 0.25, 1.45); });
-  cv.addEventListener("pointerup", () => drag = null);
+  cv.addEventListener("pointerdown", e => { drag = { x: e.clientX, y: e.clientY, yaw, pitch, moved: 0 }; cv.setPointerCapture(e.pointerId); });
+  cv._hits = () => hitG;
+  const hitAt = e => { const rc = cv.getBoundingClientRect(), x = e.clientX - rc.left, y = e.clientY - rc.top; let best = null, bd = 1e9; for (const h of hitG) { const d = Math.hypot(h.x - x, h.y - y); if (d < h.r && d < bd) { bd = d; best = h; } } return best; };
+  cv.addEventListener("pointermove", e => { if (!drag) { if (pick) cv.style.cursor = hitAt(e) ? "pointer" : "grab"; return; } drag.moved = Math.max(drag.moved, Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y)); yaw = drag.yaw + (e.clientX - drag.x) * 0.006; pitch = clamp(drag.pitch + (e.clientY - drag.y) * 0.004, 0.25, 1.45); });
+  cv.addEventListener("pointerup", e => { const d = drag; drag = null; if (pick && d && d.moved < 6) { const h = hitAt(e); if (h) pick.onPick(h.id); } });
   cv.addEventListener("wheel", e => { e.preventDefault(); dist = clamp(dist * (1 + e.deltaY * 0.001), 600, 1600); }, { passive: false });
   const onResize = () => { if (!cv.isConnected) return removeEventListener("resize", onResize); if (on) fit(); };
   addEventListener("resize", onResize);
@@ -2316,7 +2325,7 @@ function intro(then, short) {
   at(11400, () => target = 2.2);
   at(14600, () => { $o(".crawlwrap").classList.add("on"); $o(".crawl").classList.add("go"); if (snd) snd.arp(); });
   at(17000, () => { if (snd) narrator.say([...ov.querySelectorAll(".crawl h3,.crawl h2,.crawl p")].map(n => n.textContent.replace(/\s+/g, " ").trim() + ".").join(" ")); });
-  at(24000, () => $o(".begin").classList.add("on"));
+  at(store.get("introSeen", false) ? 12000 : 24000, () => $o(".begin").classList.add("on"));
   at(14600 + 80000, finish);
   }
 }
@@ -2395,7 +2404,7 @@ $("#installBtn").onclick = async () => {
   else { $("#toastText").innerHTML = "On iPhone: tap <b>Share</b> ⬆️, then <b>Add to Home Screen</b>"; $("#toast").classList.add("show"); setTimeout(() => $("#toast").classList.remove("show"), 5200); }
 };
 addEventListener("appinstalled", () => { $("#installBtn").hidden = true; });
-if (UNLOCK_ALL || store.get("skipIntro", false)) home(); else intro(home, store.get("introSeen", false));
+if (UNLOCK_ALL || store.get("skipIntro", false)) home(); else intro(home, false);
 </script>
 
 </body>
